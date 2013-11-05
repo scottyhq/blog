@@ -1,8 +1,11 @@
 Title: About
 slug: about-page
 
-<!--- markdown comment: how to link to files -->
-![Alt Text]({filename}/images/banner_home.gif)
+<!--- markdown comment: how to link to files (inset image) -->
+![Banner]({filename}/images/banner_home.gif)
+
+<!--- Alternativey insert image using liquid tag: -->
+<!--- {% img {filename}/images/banner_home.gif %} -->
 
 ## About this website
 Geophysicists today depend on computational tools for analyzing increasingly large and complex data sets. Over the last 4 years I've benefited greatly from free, open source software and instructional blogs. So I've decided to post some of my own work here!
