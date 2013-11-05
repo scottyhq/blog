@@ -8,7 +8,7 @@ from __future__ import unicode_literals
 import os
 import sys
 sys.path.append(os.curdir)
-from pelicanconf import * #Everything from pelicanconf.py is imported
+from pelicanconf import *
 
 # keep the .com address to properly find disqus comments
 #SITEURL = 'http://scottyhq.github.io'

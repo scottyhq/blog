@@ -5,8 +5,8 @@ import os
 
 AUTHOR = u'Scott Henderson'
 SITENAME = u'Geophysics Notes'
-#SITESUBTITLE = u'' #I don't like subtitles
-#SITEURL = '' #change in publishconf.py
+SITESUBTITLE = u'' #I don't like subtitles
+SITEURL = '' #change in publishconf.py
 
 #THEME = '/Users/scott/Web/pelican-themes/iris'
 THEME = '/Users/scott/Web/pelican-themes/pelican-octopress-theme'
