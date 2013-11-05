@@ -1,7 +1,7 @@
 Title: About
 slug: about-page
 
-<!--- markdown comment: how to link to files (inset image) -->
+<!--- markdown comment: how to link to files. can add "Optional title" after image path. Add straight html if you want to link the image -->
 ![Banner]({filename}/images/banner_home.gif)
 
 <!--- Alternativey insert image using liquid tag: -->
