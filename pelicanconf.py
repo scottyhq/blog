@@ -16,13 +16,13 @@ TIMEZONE = 'US/Eastern'
 DEFAULT_DATE_FORMAT = '%b %d, %Y'
 
 # Set the article URL
-ARTICLE_URL = 'blog/{date:%Y}/{date:%m}/{date:%d}/{slug}/'
-ARTICLE_SAVE_AS = 'blog/{date:%Y}/{date:%m}/{date:%d}/{slug}/index.html'
+ARTICLE_URL = '{date:%Y}/{date:%m}/{date:%d}/{slug}/'
+ARTICLE_SAVE_AS = '{date:%Y}/{date:%m}/{date:%d}/{slug}/index.html'
 
 
 # Title menu options - note in order
 DISPLAY_PAGES_ON_MENU = True
-MENUITEMS = [('Archives', '/archives.html'),
+MENUITEMS = [('Archives', '/blog/archives.html'), # not even if SITEURL = 'https://scottyhq.github.io/blog/', need to preprend 'blog here' and with liquid tags for absolute paths...
 		#('About', '/about.html'), #appears automatically with DISPLAY_PAGES_ON_MENU = True
 		('Home Page', 'http://www.geo.cornell.edu/eas/gstudent/sth54/')] #https://github.com/scottyhq/scottyhq.github.io
 NEWEST_FIRST_ARCHIVES = False
