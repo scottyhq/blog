@@ -40,11 +40,45 @@ FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
-# Blogroll - a bunch of links
-#LINKS =  (('Pelican', 'http://getpelican.com/'),
-#          ('Python.org', 'http://python.org/'),
-#          ('Jinja2', 'http://jinja.pocoo.org/'),
-#          ('You can modify those links in your config file', '#'),)
+# Blogroll - links to other good blogs
+LINKS =  (# Python Blogs
+		  ('Pelican', 'http://getpelican.com/'),
+          ('Python.org', 'http://python.org/'),
+		  ('Basemap','http://matplotlib.org/basemap'),
+		  ('Enthought[s]', 'http://blog.enthought.com'),
+		  ('IPython Notebook Viewer', 'http://nbviewer.ipython.org'),
+		  ('SciPy', 'http://www.scipy.org'),
+		  
+		  # Python-centric blogs
+		  ('Pythonic Perambulations', 'http://jakevdp.github.io'),
+		  ('Peak 5390', 'http://peak5390.wordpress.com'), 
+
+		  # Volcano Blogs
+		  ('Smithosonian Global Volcanism Program', 'http://www.volcano.si.edu'),
+		  ('Global Volcano Model','http://www.globalvolcanomodel.org'),
+		  ('VHUB','https://vhub.org'),
+		  ('WOVOdat','http://www.wovodat.org'),
+		  ('USGS Volcano Hazards','http://volcanoes.usgs.gov'),
+		  ('Magma Cum Laude', 'http://blogs.agu.org/magmacumlaude/'),
+		  ('Volcano World', 'http://volcano.oregonstate.edu'),
+		  ('The Volcanism Blog', 'http://volcanism.wordpress.com'),
+		  ('Eruptions', 'http://www.wired.com/wiredscience/eruptions'),
+		  ('IAVCEI','http://www.iavcei.org'),
+
+		  # Open Source & other Geo-related websites
+		  ('Obspy','https://github.com/obspy/obspy/wiki'),
+		  ('OSGeo','http://www.osgeo.org'),
+		  ('Rick Allmendinger Software', 'http://www.geo.cornell.edu/geology/faculty/RWA/programs/'),
+		  ('Visible Geology', 'http://visiblegeology.com'),
+		  ('Google Earth Blog', 'http://www.gearthblog.com'),
+		  #('MapBox', 'https://www.mapbox.com/blog'),
+		  ('linfiniti','http://linfiniti.com/blog.html'),
+
+		  # Misc
+		  #('Mycarta','http://mycarta.wordpress.com'),
+		  #('APOD','http://apod.nasa.gov/apod/astropix.html'),
+
+		  )
 
 # Social widget
 #SOCIAL = (('You can add links in your config file', '#'),
