@@ -1762,7 +1762,8 @@ init_mathjax();
       <p class="meta"><time datetime="2013-11-12T12:00:00" pubdate>Nov 12, 2013</time></p>
 </header>
 
-  <div class="entry-content"><p>I've posted a simple code that I wrote to browse through a set of interferograms. Single interferograms are easy to view with a <a href="http://roipac.org/Viewing_results">variety of software</a>. <a href="http://roipac.org/InstallingMdx">MDX.pl</a> and <a href="http://rnovitsky.blogspot.com/2010/10/roiview-explore-insar-data-and-more.html">RoiView</a> are what I commonly use. </p>
+  <div class="entry-content"><p><img src="/blog/images/screen_shot.png"></p>
+<p>I've posted a simple code that I wrote to browse through a set of interferograms. Single interferograms are easy to view with a <a href="http://roipac.org/Viewing_results">variety of software</a>. <a href="http://roipac.org/InstallingMdx">MDX.pl</a> and <a href="http://rnovitsky.blogspot.com/2010/10/roiview-explore-insar-data-and-more.html">RoiView</a> are what I commonly use. </p>
 <p>However, it is common to have a directory with 10's or even 100's of interferograms, and in this case it's nice to be able to view them in sequence without lots of windows open. I created <a href="https://github.com/scottyhq/roi_browser">roi_browser.py</a> for that purpose.</p>
 <p>It's not fancy or blazing fast, but should be easy to install and has some convenient features. I typically use the following command to launch it:</p>
 <div class="highlight"><pre><span class="n">roi_browser</span><span class="p">.</span><span class="n">py</span> <span class="s">&quot;int*/filt*unw&quot;</span> <span class="o">-</span><span class="n">davc</span>
@@ -1774,9 +1775,7 @@ init_mathjax();
 <li><em>-a</em> displays the amplitude image alongside phase</li>
 <li><em>-v</em> prints basic metadata to the screen for each interferogram</li>
 <li><em>-c</em> displays a cursor in the amplitude and phase images</li>
-</ul>
-<p>Here is a screenshot:
-<img alt="screenshot" src="https://scottyhq.github.io/blog/images/screen_shot.png" /></p></div>
+</ul></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">
