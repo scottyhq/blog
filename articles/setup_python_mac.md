@@ -18,11 +18,11 @@ Python is a fantastic language for scientific computing! Here are some specific 
 
 I was convinced by those two points, but there are many other people out there who have put even more thought into convincing scientists to use Python:
 
-	** [pythonforscientists](https://sites.google.com/site/pythonforscientists/)
+	* [pythonforscientists](https://sites.google.com/site/pythonforscientists/)
 
-	** [scientific computing with python notebook](http://nbviewer.ipython.org/urls/raw.github.com/jrjohansson/scientific-python-lectures/master/Lecture-0-Scientific-Computing-with-Python.ipynb)
+	* [scientific computing with python notebook](http://nbviewer.ipython.org/urls/raw.github.com/jrjohansson/scientific-python-lectures/master/Lecture-0-Scientific-Computing-with-Python.ipynb)
 
-	** [whypython?](http://www.stat.washington.edu/~hoytak/blog/whypython.html)
+	* [whypython?](http://www.stat.washington.edu/~hoytak/blog/whypython.html)
 
 
 ## Obtaining Python
@@ -57,6 +57,6 @@ I didn't know what Github was until this year. But I started noticing a lot of s
 I've always postponed learning version control software (e.g. `svn`) because it seemed complicated and tedious for the mostly small programs I write. However, I've learned over the years that these small programs can get quite big before you know it! And even small programs deserve clear commenting and accessibility. This goes beyond good etiquette, it is critical to reproducible science in the digital age! Per usual, there are some people that have beaten me to this realization, but on the bright side, I can stop writing and refer you their work:
 
 * [Version Control for fun and profit](http://nbviewer.ipython.org/urls/github.com/fperez/reprosw/raw/master/Version%2520Control.ipynb) has useful info and links, including: 
-	** [Git for Scientists](http://nyuccl.org/pages/GitTutorial/) 
-	** [Revision Control Software](http://nbviewer.ipython.org/urls/raw.github.com/jrjohansson/scientific-python-lectures/master/Lecture-7-Revision-Control-Software.ipynb)
-	*** iPart of an [entire set of iPython notebooks in scientific computing](https://github.com/jrjohansson/scientific-python-lectures)!
+	* [Git for Scientists](http://nyuccl.org/pages/GitTutorial/) 
+	* [Revision Control Software](http://nbviewer.ipython.org/urls/raw.github.com/jrjohansson/scientific-python-lectures/master/Lecture-7-Revision-Control-Software.ipynb)
+		* iPart of an [entire set of iPython notebooks in scientific computing](https://github.com/jrjohansson/scientific-python-lectures)!
