@@ -18,11 +18,11 @@ Python is a fantastic language for scientific computing! Here are some specific 
 
 I was convinced by those two points, but there are many other people out there who have put even more thought into convincing scientists to use Python:
 
-	* [pythonforscientists](https://sites.google.com/site/pythonforscientists/)
+	** [pythonforscientists](https://sites.google.com/site/pythonforscientists/)
 
-	* [scientific computing with python notebook](http://nbviewer.ipython.org/urls/raw.github.com/jrjohansson/scientific-python-lectures/master/Lecture-0-Scientific-Computing-with-Python.ipynb)
+	** [scientific computing with python notebook](http://nbviewer.ipython.org/urls/raw.github.com/jrjohansson/scientific-python-lectures/master/Lecture-0-Scientific-Computing-with-Python.ipynb)
 
-	* [whypython?](http://www.stat.washington.edu/~hoytak/blog/whypython.html)
+	** [whypython?](http://www.stat.washington.edu/~hoytak/blog/whypython.html)
 
 
 ## Obtaining Python
