@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Geophysics Notes</title>
+  <title>Setting up Python for Scientific Computing on a Mac</title>
   <meta name="author" content="Scott Henderson">
 
 
@@ -1754,57 +1754,76 @@ init_mathjax();
 </ul></nav>
   <div id="main">
     <div id="content">
-<div class="blog-index">
-  		<article>
+<div>
+  <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">
-        <a href="https://scottyhq.github.io/blog/2013/11/12/roi_browser/">ROI_PAC Interferogram Browser</a>
-      </h1>
-      <p class="meta"><time datetime="2013-11-12T12:00:00" pubdate>Nov 12, 2013</time></p>
-</header>
-
-  <div class="entry-content"><p>I've posted a simple code that I wrote to browse through a set of interferograms. Single interferograms are easy to view with a <a href="http://roipac.org/Viewing_results">variety of software</a>. <a href="http://roipac.org/InstallingMdx">MDX.pl</a> and <a href="http://rnovitsky.blogspot.com/2010/10/roiview-explore-insar-data-and-more.html">RoiView</a> are what I commonly use. </p>
-<p>However, it is common to have a directory with 10's or even 100 ...</p></div>
-  <footer>
-    <a rel="full-article" href="https://scottyhq.github.io/blog/2013/11/12/roi_browser/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://scottyhq.github.io/blog/2013/11/10/setup-python-mac/">Setting up Python for Scientific Computing on a Mac</a>
-      </h1>
+      <h1 class="entry-title">Setting up Python for Scientific Computing on a Mac</h1>
       <p class="meta"><time datetime="2013-11-10T12:00:00" pubdate>Nov 10, 2013</time></p>
 </header>
 
-  <div class="entry-content"><p>The posts on this website are mostly related to my work as graduate student in geophysics. I was looking for a medium to easily keep records of my work and share computer code with colleagues, and naturally have settled into a combination of <a href="https://github.com/">Github</a> and this weblog (which coincidentally is ...</p></div>
-  <footer>
-    <a rel="full-article" href="https://scottyhq.github.io/blog/2013/11/10/setup-python-mac/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://scottyhq.github.io/blog/2013/11/04/mapping-volcanic-eruptions/">Mapping the largest Holocene Volcanic Eruptions</a>
-      </h1>
-      <p class="meta"><time datetime="2013-11-04T11:00:00" pubdate>Nov 04, 2013</time></p>
-</header>
+  <div class="entry-content"><p>The posts on this website are mostly related to my work as graduate student in geophysics. I was looking for a medium to easily keep records of my work and share computer code with colleagues, and naturally have settled into a combination of <a href="https://github.com/">Github</a> and this weblog (which coincidentally is <a href="http://pages.github.com">hosted by Github</a>). Since computers permeate all fields of science these days, I hope that the material I post here will be interesting and useful not just to geophysicists, but to many!</p>
+<p>In my daily work I use a 2010 Macbook Pro running OSX 10.9 and a Linux Desktop running <a href="http://www.ubuntu.com">Ubuntu</a> 13.04 (raring). The following recommendations are getting up and running with Python on a Mac.</p>
+<h2>Why use Python?</h2>
+<p>Python is a fantastic language for scientific computing! Here are some specific reasons why you might consider using it: </p>
+<p><strong>high-level interpreted language</strong>. What does that mean? It means the syntax is easy to read, and you can run code in a terminal window without pre-compiling! This is a huge advantage to languages like C and Fortran, which while fast, are <em>a pain to compile and debug</em>. </p>
+<p><strong>very versatile</strong>. I use Python to do numerical calculations, write file system scripts that require string processing, and publish this website! Imagine trying to do all this with Matlab or C...</p>
+<p>I was convinced by those two points, but there are many other people out there who have put even more thought into convincing scientists to use Python:
+<em> <a href="https://sites.google.com/site/pythonforscientists/">pythonforscientists</a>
+</em> <a href="http://nbviewer.ipython.org/urls/raw.github.com/jrjohansson/scientific-python-lectures/master/Lecture-0-Scientific-Computing-with-Python.ipynb">scientific computing with python notebook</a>
+* <a href="http://www.stat.washington.edu/~hoytak/blog/whypython.html">whypython?</a></p>
+<h2>Obtaining Python</h2>
+<p>If you have a Mac, you have Python already! It's accessible from the Terminal App type <code>usr/bin/python</code>. However, it's advisable to install another copy so as to not mess up Mac OSX in any way. Also, the system Python is a minimal distribution that's missing a lot of essential libraries for scientific computing. </p>
+<p>There are a bunch of different ways to install full-featured Python. The most painless way is to utilize Enthought's pre-packaged <a href="https://www.enthought.com/products/canopy/">Canopy distribution</a>. It includes a minimal Matlab-like interface with a combined text editor and Python prompt, in addition to a very easy-to-use package management system. It's <em>free for academic users</em>, and they also have a free version with limited access to non standard Python libraries. </p>
+<p>There are other options as well. I've tried <a href="http://www.activestate.com/activepython">Active Python</a> in the past, but I really like Canopy. You can also check out the main Python page, which has an extensive list of <a href="http://www.python.org/getit/">installation options</a>. For now, I recommend installing Python 2, since many libraries are still not compatible with the newer Python 3 series. See <a href="http://jakevdp.github.io/blog/2013/01/03/will-scientists-ever-move-to-python-3/">this article</a> for more info on Python 2 versus 3.</p>
+<h2>Recommended Text Editors</h2>
+<p>Python comes standard with <a href="http://docs.python.org/2/library/idle.html">IDLE</a>, a very basic code editor. Also, if you download Canopy, its <a href="http://docs.enthought.com/canopy/quick-start/code_editor.html">built-in editor</a> is pretty convenient. I find myself using several different editors day to day. Everyone has their favorites, and mine happen to be:</p>
+<ul>
+<li>
+<p><a href="http://www.vim.org">vi</a>: The standard command line editor. You may need to enable syntax highlighting and tab-preference on your Mac: </p>
+<p>vi ~/.vimrc
+syntax on
+set ts=4    </p>
+</li>
+<li>
+<p><a href="http://www.activestate.com/komodo-edit">Komodo Edit</a>: The myriad features seem like overkill sometimes, but some of them are handy</p>
+</li>
+<li><a href="http://www.iawriter.com/mac/">iA writer</a>: I'm writing this document with iA writer. It's <em>fantastic</em> for simple stuff and webpages written in <a href="http://daringfireball.net/projects/markdown/">Markdown</a>... but it's not free :( </li>
+</ul>
+<h2>Useful Python references</h2>
+<p>I've been using Python for 5 years now, and I have loved using it every step of the way! My first job involved creating some simple graphical user interfaces with Python, in which I heavily relied on these two books:</p>
+<ul>
+<li><a href="http://www.amazon.com/Python-Cookbook-David-Beazley/dp/1449340377/ref=sr_1_1?ie=UTF8&amp;qid=1384231118&amp;sr=8-1&amp;keywords=python+cookbook">Python Cookbook</a></li>
+<li><a href="http://www.amazon.com/Python-Scripting-Computational-Science-Engineering/dp/3540739157/ref=sr_1_2?ie=UTF8&amp;qid=1384231180&amp;sr=8-2&amp;keywords=scientific+computing+python">Python Scripting for Computational Science</a></li>
+</ul>
+<p>Of course, there are tons of tutorials on the web! I recommend learning by example with iPython notebooks. The notebook is very intuitive, but I definitely benefitted from watching some <a href="http://ipython.org/videos.html">video tutorials</a> by the developers of iPython. Otherwise you can get your hands dirty with <a href="https://github.com/ipython/ipython/tree/master/examples/notebooks#a-collection-of-notebooks-for-using-ipython-effectively">official examples</a> or lots of other interesting examples in this <a href="https://github.com/ipython/ipython/wiki/A-gallery-of-interesting-IPython-Notebooks">gallery</a>. </p>
+<h2>Why to consider using Github</h2>
+<p>I didn't know what Github was until this year. But I started noticing a lot of software I used was 'moving to Github' (e.g. <a href="https://github.com/ipython/ipython">iPython</a>, <a href="https://github.com/geodynamics/pylith">Pylith</a>). I quickly learned that it is a relatively new (est. 2008) website based around the Linux version control utility, <code>git</code>, which has been around for decades! So why is this website getting so much buzz? <strong>It is a great tool for collaborative software development that encourages and facilitates writing well-documented open software.</strong> </p>
+<p>I've always postponed learning version control software (e.g. <code>svn</code>) because it seemed complicated and tedious for the mostly small programs I write. However, I've learned over the years that these small programs can get quite big before you know it! And even small programs deserve clear commenting and accessibility. This goes beyond good etiquette, it is critical to reproducible science in the digital age! Per usual, there are some people that have beaten me to this realization, but on the bright side, I can stop writing and refer you their work:</p>
+<ul>
+<li><a href="http://nbviewer.ipython.org/urls/github.com/fperez/reprosw/raw/master/Version%2520Control.ipynb">Version Control for fun and profit</a> has useful info and links, including: 
+<strong> <a href="http://nyuccl.org/pages/GitTutorial/">Git for Scientists</a> 
+</strong> <a href="http://nbviewer.ipython.org/urls/raw.github.com/jrjohansson/scientific-python-lectures/master/Lecture-7-Revision-Control-Software.ipynb">Revision Control Software</a>
+*** Part of an <a href="https://github.com/jrjohansson/scientific-python-lectures">entire set of iPython notebooks in scientific computing</a>!</li>
+</ul></div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">Scott Henderson</span>
+  </span>
+<time datetime="2013-11-10T12:00:00" pubdate>Nov 10, 2013</time>  <span class="categories">
+    <a class="category" href="https://scottyhq.github.io/blog/tag/mac.html">mac</a>
+    <a class="category" href="https://scottyhq.github.io/blog/tag/osx.html">osx</a>
+    <a class="category" href="https://scottyhq.github.io/blog/tag/python.html">python</a>
+    <a class="category" href="https://scottyhq.github.io/blog/tag/science.html">science</a>
+  </span>
+</p>    </footer>
+  </article>
 
-  <div class="entry-content"><p><img src="/blog/images/holocene_eruptions.png"></p>
-<!--- markdown comment: use notebook slicing to avoid duplicating title w/ first cell -->
-
-<p>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This iPython Notebook demonstrates how to generate a map of major Holocene volcanic eruptions. I think it's a good introduction to basic analysis and visualization of georeferenced data with Python tools.</p>
-<p>Data is from the <a href="http://www.volcano.si.edu">Smithsonian Global Volcanism Program</a>. Recently the website was updated with improved search tools and ...</p></div></p></!---></div>
-  <footer>
-    <a rel="full-article" href="https://scottyhq.github.io/blog/2013/11/04/mapping-volcanic-eruptions/">Read On &crarr;</a>
-  </footer>
-  		</article>
-<div class="pagination">
-
-  <br />
-</div></div>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+  </section>
+</div>
 <aside class="sidebar">
   <section>
     <h1>Recent Posts</h1>
@@ -1917,6 +1936,9 @@ init_mathjax();
 </script>
 	<script type="text/javascript">
 	  var disqus_shortname = 'geophysicsnotes';
+          var disqus_identifier = '/2013/11/10/setup-python-mac/';
+          var disqus_url = 'https://scottyhq.github.io/blog/2013/11/10/setup-python-mac/';
+          var disqus_title = 'Setting up Python for Scientific Computing on a Mac';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 	    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
