@@ -31,10 +31,9 @@ There are other options as well. I've tried [Active Python](http://www.activesta
 Python comes standard with [IDLE](http://docs.python.org/2/library/idle.html), a very basic code editor. Also, if you download Canopy, its [built-in editor](http://docs.enthought.com/canopy/quick-start/code_editor.html) is pretty convenient. I find myself using several different editors day to day. Everyone has their favorites, and mine happen to be:
 
 * [vi](http://www.vim.org): The standard command line editor. You may need to enable syntax highlighting and tab-preference on your Mac: 
-	
-	vi ~/.vimrc
-	syntax on
-	set ts=4	
+		vi ~/.vimrc
+		syntax on
+		set ts=4	
 
 * [Komodo Edit](http://www.activestate.com/komodo-edit): The myriad features seem like overkill sometimes, but some of them are handy
 * [iA writer](http://www.iawriter.com/mac/): I'm writing this document with iA writer. It's *fantastic* for simple stuff and webpages written in [Markdown](http://daringfireball.net/projects/markdown/)... but it's not free :( 
@@ -53,6 +52,6 @@ I didn't know what Github was until this year. But I started noticing a lot of s
 I've always postponed learning version control software (e.g. `svn`) because it seemed complicated and tedious for the mostly small programs I write. However, I've learned over the years that these small programs can get quite big before you know it! And even small programs deserve clear commenting and accessibility. This goes beyond good etiquette, it is critical to reproducible science in the digital age! Per usual, there are some people that have beaten me to this realization, but on the bright side, I can stop writing and refer you their work:
 
 * [Version Control for fun and profit](http://nbviewer.ipython.org/urls/github.com/fperez/reprosw/raw/master/Version%2520Control.ipynb) has useful info and links, including: 
-** [Git for Scientists](http://nyuccl.org/pages/GitTutorial/) 
-** [Revision Control Software](http://nbviewer.ipython.org/urls/raw.github.com/jrjohansson/scientific-python-lectures/master/Lecture-7-Revision-Control-Software.ipynb)
-*** Part of an [entire set of iPython notebooks in scientific computing](https://github.com/jrjohansson/scientific-python-lectures)!
+	** [Git for Scientists](http://nyuccl.org/pages/GitTutorial/) 
+	** [Revision Control Software](http://nbviewer.ipython.org/urls/raw.github.com/jrjohansson/scientific-python-lectures/master/Lecture-7-Revision-Control-Software.ipynb)
+	*** iPart of an [entire set of iPython notebooks in scientific computing](https://github.com/jrjohansson/scientific-python-lectures)!
