@@ -8,6 +8,7 @@ The posts on this website are mostly related to my work as graduate student in g
 
 In my daily work I use a 2010 Macbook Pro running OSX 10.9 and a Linux Desktop running [Ubuntu](http://www.ubuntu.com) 13.04 (raring). The following recommendations are getting up and running with Python on a Mac.
 
+
 ## Why use Python?
 Python is a fantastic language for scientific computing! Here are some specific reasons why you might consider using it: 
 
@@ -18,8 +19,11 @@ Python is a fantastic language for scientific computing! Here are some specific 
 I was convinced by those two points, but there are many other people out there who have put even more thought into convincing scientists to use Python:
 
 * [pythonforscientists](https://sites.google.com/site/pythonforscientists/)
+
 * [scientific computing with python notebook](http://nbviewer.ipython.org/urls/raw.github.com/jrjohansson/scientific-python-lectures/master/Lecture-0-Scientific-Computing-with-Python.ipynb)
+
 * [whypython?](http://www.stat.washington.edu/~hoytak/blog/whypython.html)
+
 
 ## Obtaining Python
 If you have a Mac, you have Python already! It's accessible from the Terminal App type `usr/bin/python`. However, it's advisable to install another copy so as to not mess up Mac OSX in any way. Also, the system Python is a minimal distribution that's missing a lot of essential libraries for scientific computing. 
