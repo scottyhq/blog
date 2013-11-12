@@ -1769,14 +1769,17 @@ init_mathjax();
 <p><strong>high-level interpreted language</strong>. What does that mean? It means the syntax is easy to read, and you can run code in a terminal window without pre-compiling! This is a huge advantage to languages like C and Fortran, which while fast, are <em>a pain to compile and debug</em>. </p>
 <p><strong>very versatile</strong>. I use Python to do numerical calculations, write file system scripts that require string processing, and publish this website! Imagine trying to do all this with Matlab or C...</p>
 <p>I was convinced by those two points, but there are many other people out there who have put even more thought into convincing scientists to use Python:</p>
-<div class="highlight"><pre><span class="o">*</span> <span class="p">[</span><span class="n">pythonforscientists</span><span class="p">](</span><span class="n">https</span><span class="o">:</span><span class="c1">//sites.google.com/site/pythonforscientists/)</span>
-
-<span class="o">*</span> <span class="p">[</span><span class="n">scientific</span> <span class="n">computing</span> <span class="n">with</span> <span class="n">python</span> <span class="n">notebook</span><span class="p">](</span><span class="n">http</span><span class="o">:</span><span class="c1">//nbviewer.ipython.org/urls/raw.github.com/jrjohansson/scientific-python-lectures/master/Lecture-0-Scientific-Computing-with-Python.ipynb)</span>
-
-<span class="o">*</span> <span class="p">[</span><span class="n">whypython</span><span class="o">?</span><span class="p">](</span><span class="n">http</span><span class="o">:</span><span class="c1">//www.stat.washington.edu/~hoytak/blog/whypython.html)</span>
-</pre></div>
-
-
+<ul>
+<li>
+<p><a href="https://sites.google.com/site/pythonforscientists/">pythonforscientists</a></p>
+</li>
+<li>
+<p><a href="http://nbviewer.ipython.org/urls/raw.github.com/jrjohansson/scientific-python-lectures/master/Lecture-0-Scientific-Computing-with-Python.ipynb">scientific computing with python notebook</a></p>
+</li>
+<li>
+<p><a href="http://www.stat.washington.edu/~hoytak/blog/whypython.html">whypython?</a></p>
+</li>
+</ul>
 <h2>Obtaining Python</h2>
 <p>If you have a Mac, you have Python already! It's accessible from the Terminal App type <code>usr/bin/python</code>. However, it's advisable to install another copy so as to not mess up Mac OSX in any way. Also, the system Python is a minimal distribution that's missing a lot of essential libraries for scientific computing. </p>
 <p>There are a bunch of different ways to install full-featured Python. The most painless way is to utilize Enthought's pre-packaged <a href="https://www.enthought.com/products/canopy/">Canopy distribution</a>. It includes a minimal Matlab-like interface with a combined text editor and Python prompt, in addition to a very easy-to-use package management system. It's <em>free for academic users</em>, and they also have a free version with limited access to non standard Python libraries. </p>
@@ -1785,10 +1788,13 @@ init_mathjax();
 <p>Python comes standard with <a href="http://docs.python.org/2/library/idle.html">IDLE</a>, a very basic code editor. Also, if you download Canopy, its <a href="http://docs.enthought.com/canopy/quick-start/code_editor.html">built-in editor</a> is pretty convenient. I find myself using several different editors day to day. Everyone has their favorites, and mine happen to be:</p>
 <ul>
 <li>
-<p><a href="http://www.vim.org">vi</a>: The standard command line editor. You may need to enable syntax highlighting and tab-preference on your Mac: 
-        vi ~/.vimrc
-        syntax on
-        set ts=4    </p>
+<p><a href="http://www.vim.org">vi</a>: The standard command line editor. You may need to enable syntax highlighting and tab-preference on your Mac:</p>
+<div class="highlight"><pre><span class="n">vi</span> <span class="o">~/</span><span class="p">.</span><span class="n">vimrc</span>
+<span class="n">syntax</span> <span class="n">on</span>
+<span class="n">set</span> <span class="n">ts</span><span class="o">=</span><span class="mi">4</span>
+</pre></div>
+
+
 </li>
 <li>
 <p><a href="http://www.activestate.com/komodo-edit">Komodo Edit</a>: The myriad features seem like overkill sometimes, but some of them are handy</p>
