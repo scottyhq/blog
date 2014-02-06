@@ -26,7 +26,7 @@ I was convinced by those two points, but there are many other people out there w
 
 
 ## Obtaining Python
-If you have a Mac, you have Python already! It's accessible from the Terminal App type `usr/bin/python`. However, it's advisable to install another copy so as to not mess up Mac OSX in any way. Also, the system Python is a minimal distribution that's missing a lot of essential libraries for scientific computing. 
+If you have a Mac, you have Python already! It's accessible from the Terminal App type `python`. However, it's advisable to install another copy to customize and not risk messing up Mac OSX in any way.  
 
 There are a bunch of different ways to install full-featured Python. The most painless way is to utilize Enthought's pre-packaged [Canopy distribution](https://www.enthought.com/products/canopy/). It includes a minimal Matlab-like interface with a combined text editor and Python prompt, in addition to a very easy-to-use package management system. It's *free for academic users*, and they also have a free version with limited access to non standard Python libraries. 
 
@@ -55,7 +55,7 @@ Of course, there are tons of tutorials on the web! I recommend learning by examp
 ## Why to consider using Github
 I didn't know what Github was until this year. But I started noticing a lot of software I used was 'moving to Github' (e.g. [iPython](https://github.com/ipython/ipython), [Pylith](https://github.com/geodynamics/pylith)). I quickly learned that it is a relatively new (est. 2008) website based around the Linux version control utility, `git`, which has been around for decades! So why is this website getting so much buzz? **It is a great tool for collaborative software development that encourages and facilitates writing well-documented open software.** 
 
-I've always postponed learning version control software (e.g. `svn`) because it seemed complicated and tedious for the mostly small programs I write. However, I've learned over the years that these small programs can get quite big before you know it! And even small programs deserve clear commenting and accessibility. This goes beyond good etiquette, it is critical to reproducible science in the digital age! Per usual, there are some people that have beaten me to this realization, but on the bright side, I can stop writing and refer you their work:
+I've always postponed learning version control software (e.g. `svn`) because it seemed complicated and tedious for the mostly small programs I write. However, I've learned over the years that these small programs can get quite big before you know it! And even small programs deserve clear commenting and accessibility. There are some people that have beaten me to this realization, so I'll refer you their work:
 
 * [Version Control for fun and profit](http://nbviewer.ipython.org/urls/github.com/fperez/reprosw/raw/master/Version%2520Control.ipynb) has useful info and links, including:
 	* [Git for Scientists](http://nyuccl.org/pages/GitTutorial/) 
