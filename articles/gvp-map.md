@@ -1,5 +1,5 @@
 title: Mapping the largest Holocene Volcanic Eruptions
-date: 2013-11-04 11:00
+date: 2014-02-08 11:00
 tags: matplotlib,basemap,volcano,eruption
 slug: mapping-volcanic-eruptions
 
