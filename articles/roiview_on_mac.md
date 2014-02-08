@@ -3,6 +3,8 @@ date: 2014-02-06 4:00
 tags: ROI_PAC, InSAR, MDX, Roiview
 slug: install-roiview-mac
 
+{% img /blog/images/roiview_mac.png %}
+
 ## Visualizing ROI_PAC Output
 
 ROI_PAC outputs many images files in a few different binary formats ([install ROI_PAC post]({filename}ROI_PAC_ON_MAC.md)]). You can view these files [many ways](http://www.roipac.org/Viewing_results), but there are two programs designed specifically with ROI_PAC in mind: [MDX](http://winsar.unavco.org/isce.html) and [Roiview](http://roiview.sourceforge.net). Since MDX is standard, I've described installing it on Mac in [this post]({filename}mdx_on_mac.md). 
@@ -13,31 +15,35 @@ Here I go over installing the alternative Roiview. I haven't used it much, but i
 
 Roiview is coded in Python, so it is effectively cross-platform. But it utilizes linux-based GUI libraries that are not part of the standard Mac operating system. So the easiest way to install a functioning version of Python that can utilize these libraries is with [Homebrew]((http://brew.sh)). Here are the lines you need to run:
 
-```ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+```
+ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 brew doctor
+```
 
 This installs home-brew and checks to make sure you're system is ready to install homebrew packages.
 
 Now you have to access additional packages repositories to get required python packages
 
 ```
-	brew tap homebrew/python
-	brew tap homebrew/science
-	brew tap homebrew/dupes
+brew tap homebrew/python
+brew tap homebrew/science
+brew tap homebrew/dupes
+```
 
 Then install python. Some python package dependencies aren't available through the home-brew repositories, so you have to install them with pip:
 
 ```
-	brew install python
-	pip install --upgrade setuptools
-	pip install --upgrade pip
+brew install python
+pip install --upgrade setuptools
+pip install --upgrade pip
 
-	pip install nose
-	pip install python-dateutil
-	pip install pyparsing
-	brew install numpy
-	brew install pygtk —-glade
-	brew install matplotlib --with-pygtk
+pip install nose
+pip install python-dateutil
+pip install pyparsing
+brew install numpy
+brew install pygtk —-glade
+brew install matplotlib --with-pygtk
+```
 
 The GTK and Glade stuff relates to the libraries required for Roiview to work. Now you can run Roiview! For example (Picture Here):
 
@@ -56,4 +62,4 @@ So you can either look into installing these packages specifically (probably mat
 cb = self.V['im'].colorbar #SH
 ```
 
-There may be lots of other issues, so proceed at your own risk.
+There may be lots of other issues, so no guarantees....

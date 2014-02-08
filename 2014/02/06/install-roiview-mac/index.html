@@ -1762,23 +1762,26 @@ init_mathjax();
       <p class="meta"><time datetime="2014-02-06T04:00:00" pubdate>Feb 06, 2014</time></p>
 </header>
 
-  <div class="entry-content"><h2>Visualizing ROI_PAC Output</h2>
+  <div class="entry-content"><p><img src="/blog/images/roiview_mac.png"></p>
+<h2>Visualizing ROI_PAC Output</h2>
 <p>ROI_PAC outputs many images files in a few different binary formats (<a href="https://scottyhq.github.io/blog/2014/02/01/install-roipac-mac/">install ROI_PAC post</a>]). You can view these files <a href="http://www.roipac.org/Viewing_results">many ways</a>, but there are two programs designed specifically with ROI_PAC in mind: <a href="http://winsar.unavco.org/isce.html">MDX</a> and <a href="http://roiview.sourceforge.net">Roiview</a>. Since MDX is standard, I've described installing it on Mac in <a href="https://scottyhq.github.io/blog/2014/02/03/install-mdx-mac/">this post</a>. </p>
 <p>Here I go over installing the alternative Roiview. I haven't used it much, but it seems like Roiview is an excellent free alternative to MDX. Getting it to run on a Mac takes a little fiddling. Fortunately it's not too hard!</p>
 <h2>Homebrew installation recipe</h2>
 <p>Roiview is coded in Python, so it is effectively cross-platform. But it utilizes linux-based GUI libraries that are not part of the standard Mac operating system. So the easiest way to install a functioning version of Python that can utilize these libraries is with <a href="(http://brew.sh)">Homebrew</a>. Here are the lines you need to run:</p>
-<p>```ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
-brew doctor</p>
-<p>This installs home-brew and checks to make sure you're system is ready to install homebrew packages.</p>
-<p>Now you have to access additional packages repositories to get required python packages</p>
-<div class="highlight"><pre>    <span class="n">brew</span> <span class="n">tap</span> <span class="n">homebrew</span><span class="o">/</span><span class="n">python</span>
-    <span class="n">brew</span> <span class="n">tap</span> <span class="n">homebrew</span><span class="o">/</span><span class="n">science</span>
-    <span class="n">brew</span> <span class="n">tap</span> <span class="n">homebrew</span><span class="o">/</span><span class="n">dupes</span>
-
-<span class="n">Then</span> <span class="n">install</span> <span class="n">python</span><span class="p">.</span> <span class="n">Some</span> <span class="n">python</span> <span class="n">package</span> <span class="n">dependencies</span> <span class="n">aren</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">available</span> <span class="n">through</span> <span class="n">the</span> <span class="n">home</span><span class="o">-</span><span class="n">brew</span> <span class="n">repositories</span><span class="p">,</span> <span class="n">so</span> <span class="n">you</span> <span class="n">have</span> <span class="n">to</span> <span class="n">install</span> <span class="n">them</span> <span class="n">with</span> <span class="n">pip</span><span class="o">:</span>
+<div class="highlight"><pre><span class="n">ruby</span> <span class="o">-</span><span class="n">e</span> <span class="s">&quot;$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)&quot;</span>
+<span class="n">brew</span> <span class="n">doctor</span>
 </pre></div>
 
 
+<p>This installs home-brew and checks to make sure you're system is ready to install homebrew packages.</p>
+<p>Now you have to access additional packages repositories to get required python packages</p>
+<div class="highlight"><pre><span class="n">brew</span> <span class="n">tap</span> <span class="n">homebrew</span><span class="o">/</span><span class="n">python</span>
+<span class="n">brew</span> <span class="n">tap</span> <span class="n">homebrew</span><span class="o">/</span><span class="n">science</span>
+<span class="n">brew</span> <span class="n">tap</span> <span class="n">homebrew</span><span class="o">/</span><span class="n">dupes</span>
+</pre></div>
+
+
+<p>Then install python. Some python package dependencies aren't available through the home-brew repositories, so you have to install them with pip:</p>
 <div class="highlight"><pre><span class="n">brew</span> <span class="n">install</span> <span class="n">python</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">setuptools</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
@@ -1806,7 +1809,7 @@ brew doctor</p>
 </pre></div>
 
 
-<p>There may be lots of other issues, so proceed at your own risk.</p></div>
+<p>There may be lots of other issues, so no guarantees....</p></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">

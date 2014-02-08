@@ -3,7 +3,7 @@ date: 2014-02-01 2:00
 tags: ROI_PAC, InSAR, Homebrew
 slug: install-roipac-mac
 
-{% img /blog/images/hector_mine_roi_pac.jog %}
+{% img /blog/images/hector_mine_roi_pac.jpg %}
 
 ## What is it?
 
@@ -11,15 +11,16 @@ slug: install-roipac-mac
 
 This post walks you through installing an up-to-date version on ROI_PAC on a modern Mac (e.g my Macbook Pro from 2010 w/ OSX 10.9.1). The target audience is people who are familiar with ROI_PAC, but since the software can be acquired for free ( _for research & academic uses_), I hope this will be useful for anyone wanting to try out InSAR processing. Note that this will get you up and running, but if you're looking for more information on how to use the software I recommend short-courses hosted by [UNAVCO](https://www.unavco.org/edu_outreach/short-courses/2011/insar/insar.html).
 
-The [ROI_PAC](http://www.roipac.org/Installation) wiki does have some older notes on installation, but the recipe below is recent (Feb. 2014). In the end, you'll be set-up to process ERS, Envisat, ALOS, and TSX data. And there are instructions for installing visualization software MDX or Roiview.
+The [ROI_PAC](http://www.roipac.org/Installation) wiki does have some older notes on installation, but the recipe below is recent (Feb. 2014). In the end, you'll be set-up to process ERS, Envisat, ALOS, and TSX data.
 
 ## Download the software
 From [here](http://www.openchannelfoundation.org/orders/index.php?group_id=282). You should have:
+
 1. ROI_PAC_3_0_1.tar
 2. roi_pac_testdir.tar
 
 ## Before you begin
-Note that _ROI_PAC itself takes up < 100Mb of space_, but _orbit files for ERS and Envisat are ~3Gb_, and _individual interferograms take up 1-10Gb_ depending on the size of data and processing resolution. Point being, make sure you have a spacious drive to work with ROI_PAC.
+Note that ROI_PAC itself takes up < 100Mb of space, but orbit files for ERS and Envisat are ~3Gb, and individual interferograms take up 1-10Gb depending on the size of data and processing resolution. Point being, make sure you have a spacious drive to work with ROI_PAC.
 
 ## Prepare your computer
 You're going to need C and Fortran compilers, and some other non-standard libraries. Apple versions of these can be installed from the terminal with:
@@ -40,7 +41,7 @@ Before continuing, I recommend familiarizing yourself with [how Homebrew works](
 brew install gfortran
 ```
 
-We'll be using Homebrew again to install stuff if you want to use [MDX](roiview_on_mac.md) or [Roiview]({filename}roiview_on_mac.md) visualization software on the Mac. You can now extract the ROI_PAC source and start installing!
+We'll be using Homebrew again to install stuff if you want to use [MDX]({filename}mdx_on_mac.md) or [Roiview]({filename}roiview_on_mac.md) visualization software on the Mac. You can now extract the ROI_PAC source and start installing!
 
 ```
 tar -xvf ROI_PAC_3_0_1.tar
@@ -55,10 +56,10 @@ export FFTW_LIB_DIR=/Users/scott/Software/ROI_PAC_3_0_1/ROI_PAC/NetInst/fftw-140
 export FFTW_INC_DIR=/Users/scott/Software/ROI_PAC_3_0_1/ROI_PAC/NetInst/fftw-140203-1620/include
 ```
 
-NOTE that `fftw-140203-1620` will change according to todays date and time. Next you compile ROI_PAC. `./contrib/multibuild.sh` is designed to try a whole bunch of compiler options. For mac, we only want to try gfortran, so you can delete the relevant lines at the bottom of `multibuild.sh` or I've posted a copy of the modified file [here]. Now run:
+NOTE that `fftw-140203-1620` will change according to today's date and time. Next you compile ROI_PAC. `./contrib/multibuild.sh` is designed to try a whole bunch of compiler options. For mac, we only want to try gfortran, so you can delete the relevant lines at the bottom of `multibuild.sh` or I've posted a copy of the modified file [here]({filename}/downloads/scripts/multibuild_mod.sh). Now run:
 
 ```
-./contrib/multibuild.sh
+./contrib/multibuild_mod.sh
 ```
 
 
@@ -100,7 +101,11 @@ mkdir INT_BIN
 cp multibuild-140203-1629/installs/gfortran64/bin/* INT_BIN
 ```
 
-Finally, edit the configuration file SAR_CONFIG as described here. Or use my copy here as a template. Success! ROI_PAC is now working. But if you want it to be really useful, you have to download precise orbit files and special add-ons for each satellite. The sections below make sure you've got what you need for processing ERS, Envisat, ALOS, and TSX data.
+Finally, edit the configuration file `SAR_CONFIG` as described here. Or use my copy here as a template. Success! ROI_PAC is now working. But if you want it to be really useful, you have to download precise orbit files and special add-ons for each satellite. The sections below make sure you've got what you need for processing ERS, Envisat, ALOS, and TSX data.
+
+
+# Satellite-Specific Set-up
+
 
 ## ERS1 & 2
 " **E** uropian **R** emote-Sensing **S** atellite". Details [here](https://earth.esa.int/web/guest/missions/esa-operational-eo-missions/ers). This data is commonly obtained through [EOLi](http://earth.esa.int/EOLi/EOLi.html). Lots of processing tips are on the ROI_PAC wiki [ERS page](http://www.roipac.org/ERS). Usually, you'll want to process data with precise orbit files:
@@ -121,7 +126,7 @@ edit the `Makefile` to set `FC=gfortran` and `BIN_DIR=$INT_BIN`, then run:
 make install
 ```
 
-Be sure to download the actual orbit files through the Delft Institute for Earth-oriented Space Research (DEOS) [website](http://www.deos.tudelft.nl/ers/precorbs/). In SAR_CONFIG, set `SAR_ODR_DIR=path-to-downloaded-files`. Select OrbitType=ODR to process with these orbits.
+Be sure to download the actual orbit files through the Delft Institute for Earth-oriented Space Research (DEOS) [website](http://www.deos.tudelft.nl/ers/precorbs/). In `SAR_CONFIG`, set `SAR_ODR_DIR=path-to-downloaded-files`. Select OrbitType=ODR to process with these orbits.
 
 
 #### HDR Orbits
@@ -145,16 +150,16 @@ In your .proc file, set OrbitType=POR to process with these orbits.
 
 2. Download and compile ALOS [pre-processing codes](http://www-rohan.sdsu.edu/~rmellors/RJM_InSAR_software.html) (~28Mb)
 
-```
-cd alos_preproc
-tar -xvf ALOS_preproc_040910.tar
-make
-mkdir $INT_BIN/MY_BIN
-export $MY_BIN=$INT_BIN/MY_BIN
-mv ./bin/i386/* $MY_BIN
-```
+	```
+	cd alos_preproc
+	tar -xvf ALOS_preproc_040910.tar
+	make
+	mkdir $INT_BIN/MY_BIN
+	export $MY_BIN=$INT_BIN/MY_BIN
+	mv ./bin/i386/* $MY_BIN
+	```
 
-3. Add $MY_BIN variable to SAR_CONFIG
+3. Add $MY_BIN variable to `SAR_CONFIG`
 
 
 I've recently created some useful scripts for working with ALOS data which you can find [here](https://github.com/scottyhq/insar_scripts/tree/master/ALOS).
@@ -163,7 +168,7 @@ I've recently created some useful scripts for working with ALOS data which you c
 ## TerraSAR-X & Tandem-X
 Details on the [German Space Agency Website](http://www.dlr.de/dlr/en/desktopdefault.aspx/tabid-10377/565_read-436/#gallery/350). Data can be searched and ordered [here](https://centaurus.caf.dlr.de:8443). Lots of processing notes are on the ROI_PAC wiki [TSX Page](http://www.roipac.org/TSX).You need scripts to pre-process TSX data before it is ingested into the ROI_PAC processing chain. Instructions follow:
 
-On the ROI_PAC wiki you can get a file called sar-0.4.tar.gz [here](http://www.roipac.org/ContribSoftware), which includes C++ parses for several satellites. Alternatively, [tsx_parser.tar.gz](link) contains Python code that is a bit easier to use, which you install in the following way:
+On the ROI_PAC wiki you can get a file called `sar-0.4.tar.gz` [here](http://www.roipac.org/ContribSoftware), which includes C++ parses for several satellites. Alternatively, [tsx_parser](https://github.com/scottyhq/insar_scripts/tree/master/TSX) contains Python code that is a bit easier to use, which you install in the following way:
 
 ```
 tar -xzvf tsx_parser.tar.gz
@@ -174,4 +179,6 @@ mv src/doppler src/cosar get_height.pl make_slc_tsx.csh $MY_BIN
 ```
 
 
-I have some of my own small utilities for working with TSX data posted [here](link-github)
+I have some of my own small utilities for working with TSX data posted [here](https://github.com/scottyhq/insar_scripts/tree/master/TSX)
+
+
