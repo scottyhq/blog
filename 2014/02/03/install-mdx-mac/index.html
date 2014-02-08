@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Geophysics Deskwork - volcano</title>
+  <title>Install MDX on Mac</title>
   <meta name="author" content="Scott Henderson">
 
 
@@ -1755,36 +1755,76 @@ init_mathjax();
 </ul></nav>
   <div id="main">
     <div id="content">
-<div class="blog-index">
-  		<article>
+<div>
+  <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">
-        <a href="https://scottyhq.github.io/blog/2013/11/04/mapping-volcanic-eruptions/">Mapping the largest Holocene Volcanic Eruptions</a>
-      </h1>
-      <p class="meta"><time datetime="2013-11-04T11:00:00" pubdate>Nov 04, 2013</time></p>
+      <h1 class="entry-title">Install MDX on Mac</h1>
+      <p class="meta"><time datetime="2014-02-03T05:00:00" pubdate>Feb 03, 2014</time></p>
 </header>
 
-  <div class="entry-content"><p><img src="/blog/images/holocene_eruptions.png"></p>
-<!--- markdown comment: use notebook slicing to avoid duplicating title w/ first cell -->
+  <div class="entry-content"><p><img src="/blog/images/mdx_mac.png"></p>
+<p><a href="http://roipac.org/Viewing_results#head-5b86fe6df122f36c359afab0b01792d812664bfa">MDX</a> is the go-to visualization software for ROI_PAC files, and this post explains how to get it working on a Mac. You can see about installing alternative software on <a href="https://scottyhq.github.io/blog/2014/02/06/install-roiview-mac/">this post</a></p>
+<p>MDX is tricky to obtain,,, <a href="http://winsar.unavco.org/isce.html">here is one place</a>. </p>
+<p>You'll need some dated open motif libraries to run it. Fortunately, with Homebrew (see previous post), it's not hard to get it working on a Mac:</p>
+<div class="highlight"><pre><span class="n">brew</span> <span class="n">install</span> <span class="n">lesstif</span>
+</pre></div>
 
-<p>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This iPython Notebook demonstrates how to generate a map of major Holocene volcanic eruptions. I think it's a good introduction to basic analysis and visualization of georeferenced data with Python tools.</p>
-<p>Data is from the <a href="http://www.volcano.si.edu">Smithsonian Global Volcanism Program</a>. Recently the website was updated with improved search tools and ...</p></div></p></!---></div>
-  <footer>
-    <a rel="full-article" href="https://scottyhq.github.io/blog/2013/11/04/mapping-volcanic-eruptions/">Read On &crarr;</a>
-  </footer>
-  		</article>
-<div class="pagination">
 
-  <br />
-</div></div>
+<p>Assuming you have obtained <code>mdx_190_79_03.tar</code></p>
+<div class="highlight"><pre><span class="n">tar</span> <span class="o">-</span><span class="n">xzf</span> <span class="n">mdx_190_79_03</span><span class="p">.</span><span class="n">tar</span>
+<span class="n">cd</span> <span class="n">mdx_190_79_03</span>
+</pre></div>
+
+
+<p>Change the following two lines in Makemdx_gfortran:</p>
+<div class="highlight"><pre><span class="n">XINC</span> <span class="o">=</span> <span class="o">-</span><span class="n">I</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">X11R6</span><span class="o">/</span><span class="n">include</span><span class="o">/</span> <span class="o">-</span><span class="n">I</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">X11</span><span class="o">/</span><span class="n">include</span><span class="o">/</span>
+<span class="n">XLIB</span> <span class="o">=</span> <span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">X11</span><span class="o">/</span><span class="n">lib</span>  <span class="o">-</span><span class="n">lXm</span> <span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">X11R6</span><span class="o">/</span><span class="n">lib</span> <span class="o">-</span><span class="n">lXt</span> <span class="o">-</span><span class="n">lX11</span>
+</pre></div>
+
+
+<p>And run:</p>
+<div class="highlight"><pre><span class="n">make</span> <span class="o">-</span><span class="n">f</span> <span class="n">Makemdx_gfortran</span>
+</pre></div>
+
+
+<p>Now just add the MDX environment variable to SAR_CONFIG and system PATH (e.g. <code>export PATH=/Users/scott/Software/mdx_190_79_03/mdx:$PATH</code>). Assuming you have the ROI_PAC test data, you can see an image with the following command. More details on using MDX are <a href="http://roipac.org/Viewing_results#head-5b86fe6df122f36c359afab0b01792d812664bfa">here</a>.</p></div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">Scott Henderson</span>
+  </span>
+<time datetime="2014-02-03T05:00:00" pubdate>Feb 03, 2014</time>  <span class="categories">
+    <a class="category" href="https://scottyhq.github.io/blog/tag/roi_pac.html">ROI_PAC</a>
+    <a class="category" href="https://scottyhq.github.io/blog/tag/insar.html">InSAR</a>
+    <a class="category" href="https://scottyhq.github.io/blog/tag/mdx.html">MDX</a>
+    <a class="category" href="https://scottyhq.github.io/blog/tag/roiview.html">Roiview</a>
+  </span>
+</p>    </footer>
+  </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+  </section>
+</div>
 <aside class="sidebar">
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="https://scottyhq.github.io/blog/2013/11/04/mapping-volcanic-eruptions/">Mapping the largest Holocene Volcanic Eruptions</a>
+          <a href="https://scottyhq.github.io/blog/2014/02/06/install-roiview-mac/">Roiview on Mac</a>
+      </li>
+      <li class="post">
+          <a href="https://scottyhq.github.io/blog/2014/02/03/install-mdx-mac/">Install MDX on Mac</a>
+      </li>
+      <li class="post">
+          <a href="https://scottyhq.github.io/blog/2014/02/01/install-roipac-mac/">ROI_PAC ON_MAC</a>
+      </li>
+      <li class="post">
+          <a href="https://scottyhq.github.io/blog/2013/11/12/roi_browser/">ROI_PAC Interferogram Browser</a>
+      </li>
+      <li class="post">
+          <a href="https://scottyhq.github.io/blog/2013/11/10/setup-python-mac/">Setting up Python for Scientific Computing on a Mac</a>
       </li>
     </ul>
   </section>
@@ -1885,6 +1925,9 @@ init_mathjax();
 </script>
 	<script type="text/javascript">
 	  var disqus_shortname = 'geophysicsnotes';
+          var disqus_identifier = '/2014/02/03/install-mdx-mac/';
+          var disqus_url = 'https://scottyhq.github.io/blog/2014/02/03/install-mdx-mac/';
+          var disqus_title = 'Install MDX on Mac';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 	    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';

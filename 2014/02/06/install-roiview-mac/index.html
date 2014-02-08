@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>ROI_PAC ON_MAC</title>
+  <title>Roiview on Mac</title>
   <meta name="author" content="Scott Henderson">
 
 
@@ -1758,42 +1758,65 @@ init_mathjax();
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">ROI_PAC ON_MAC</h1>
-      <p class="meta"><time datetime="2014-02-06T02:00:00" pubdate>Feb 06, 2014</time></p>
+      <h1 class="entry-title">Roiview on Mac</h1>
+      <p class="meta"><time datetime="2014-02-06T04:00:00" pubdate>Feb 06, 2014</time></p>
 </header>
 
-  <div class="entry-content"><h1>ROI_PAC ON_MAC</h1>
-<p><a href="http://www.openchannelfoundation.org/projects/ROI_PAC">ROI_PAC</a> is software for processing Interferometeric Synthetic Aperture Radar (InSAR) data. For general info about InSAR see this. The last major ROI_PAC update was in August 2009, since development focus seems to have moved to <a href="http://esto.nasa.gov/news/news_ISCE_3_2013.html">ISCE software</a>. Nevertheless, it is still widely used and will likely continue to be for some time!</p>
-<p>This post walks you through installing an up-to-date version on ROI_PAC on a modern Mac (e.g my Macbook Pro from 2010 w/ OSX 10.9.1). The target audience is people who are familiar with ROI_PAC, but since the software can be acquired for free ( <strong>for research &amp; academic uses</strong>), I hope this will be useful for anyone wanting to try out InSAR processing.</p>
-<p>The <a href="http://www.roipac.org/Installation">ROI_PAC</a> wiki does have some older notes on installation, but the recipe below is more recent. In the end, you'll be set-up to process ERS, Envisat, ALOS, and TSX data. And there are instructions for installing visualization software MDX or Roiview.</p>
-<h2>Download the software</h2>
-<p>From <a href="http://www.openchannelfoundation.org/orders/index.php?group_id=282">here</a>.</p>
-<h2>Prepare your computer</h2>
-<p>You're going to need C and Fortran compilers, and some other non-standard libraries. Apple versions of these can be installed from the terminal with:</p>
-<div class="highlight"><pre><span class="n">xcode</span><span class="o">-</span><span class="n">select</span> <span class="o">--</span><span class="n">install</span>
+  <div class="entry-content"><h2>Visualizing ROI_PAC Output</h2>
+<p>ROI_PAC outputs many images files in a few different binary formats (<a href="https://scottyhq.github.io/blog/2014/02/01/install-roipac-mac/">install ROI_PAC post</a>]). You can view these files <a href="http://www.roipac.org/Viewing_results">many ways</a>, but there are two programs designed specifically with ROI_PAC in mind: <a href="http://winsar.unavco.org/isce.html">MDX</a> and <a href="http://roiview.sourceforge.net">Roiview</a>. Since MDX is standard, I've described installing it on Mac in <a href="https://scottyhq.github.io/blog/2014/02/03/install-mdx-mac/">this post</a>. </p>
+<p>Here I go over installing the alternative Roiview. I haven't used it much, but it seems like Roiview is an excellent free alternative to MDX. Getting it to run on a Mac takes a little fiddling. Fortunately it's not too hard!</p>
+<h2>Homebrew installation recipe</h2>
+<p>Roiview is coded in Python, so it is effectively cross-platform. But it utilizes linux-based GUI libraries that are not part of the standard Mac operating system. So the easiest way to install a functioning version of Python that can utilize these libraries is with <a href="(http://brew.sh)">Homebrew</a>. Here are the lines you need to run:</p>
+<p>```ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+brew doctor</p>
+<p>This installs home-brew and checks to make sure you're system is ready to install homebrew packages.</p>
+<p>Now you have to access additional packages repositories to get required python packages</p>
+<div class="highlight"><pre>    <span class="n">brew</span> <span class="n">tap</span> <span class="n">homebrew</span><span class="o">/</span><span class="n">python</span>
+    <span class="n">brew</span> <span class="n">tap</span> <span class="n">homebrew</span><span class="o">/</span><span class="n">science</span>
+    <span class="n">brew</span> <span class="n">tap</span> <span class="n">homebrew</span><span class="o">/</span><span class="n">dupes</span>
+
+<span class="n">Then</span> <span class="n">install</span> <span class="n">python</span><span class="p">.</span> <span class="n">Some</span> <span class="n">python</span> <span class="n">package</span> <span class="n">dependencies</span> <span class="n">aren</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">available</span> <span class="n">through</span> <span class="n">the</span> <span class="n">home</span><span class="o">-</span><span class="n">brew</span> <span class="n">repositories</span><span class="p">,</span> <span class="n">so</span> <span class="n">you</span> <span class="n">have</span> <span class="n">to</span> <span class="n">install</span> <span class="n">them</span> <span class="n">with</span> <span class="n">pip</span><span class="o">:</span>
 </pre></div>
 
 
-<p>For non-apple stuff the slickest package manager seems to currently be <a href="http://brew.sh">Homebrew</a>. If you're familiar with Fink and Macports, it is very similar. Install it with:</p>
-<div class="highlight"><pre><span class="n">ruby</span> <span class="o">-</span><span class="n">e</span> <span class="s">&quot;$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)&quot;</span>
+<div class="highlight"><pre><span class="n">brew</span> <span class="n">install</span> <span class="n">python</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">setuptools</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+
+<span class="n">pip</span> <span class="n">install</span> <span class="n">nose</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">dateutil</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">pyparsing</span>
+<span class="n">brew</span> <span class="n">install</span> <span class="n">numpy</span>
+<span class="n">brew</span> <span class="n">install</span> <span class="n">pygtk</span> <span class="err">—</span><span class="o">-</span><span class="n">glade</span>
+<span class="n">brew</span> <span class="n">install</span> <span class="n">matplotlib</span> <span class="o">--</span><span class="n">with</span><span class="o">-</span><span class="n">pygtk</span>
 </pre></div>
 
 
-<p>Before continuing, I recommend familiarizing yourself with <a href="https://github.com/Homebrew/homebrew/wiki">how Homebrew works</a>. Now you can easily install an up-to-date fortran compiler:</p>
-<div class="highlight"><pre><span class="n">brew</span> <span class="n">install</span> <span class="n">gfortran</span>
+<p>The GTK and Glade stuff relates to the libraries required for Roiview to work. Now you can run Roiview! For example (Picture Here):</p>
+<h2>Notes</h2>
+<p>Roiview was last updated in 2010, so I've noticed that sometimes it doesn't work well with newer python packages. According to the README file it is tested with tested with: </p>
+<ul>
+<li>python 2.6</li>
+<li>numpy 1.3.0</li>
+<li>matplotlib 0.99.1</li>
+</ul>
+<p>So you can either look into installing these packages specifically (probably matplotlib 0.99.1 is the only one that matters). Or fiddling with the source code so that it runs with new syntax. For example I had to change the following line 601 in roiviewdata.py:</p>
+<div class="highlight"><pre><span class="c">#cb = self.V[&#39;im&#39;].colorbar[0]</span>
+<span class="n">cb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="p">[</span><span class="s">&#39;im&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">colorbar</span> <span class="c">#SH</span>
 </pre></div>
 
 
-<p>We'll be using Homebrew again to install stuff if you want to use MDX or Roiview visualization software on the Mac (see post)</p></div>
+<p>There may be lots of other issues, so proceed at your own risk.</p></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">
     Posted by <span class="fn">Scott Henderson</span>
   </span>
-<time datetime="2014-02-06T02:00:00" pubdate>Feb 06, 2014</time>  <span class="categories">
+<time datetime="2014-02-06T04:00:00" pubdate>Feb 06, 2014</time>  <span class="categories">
     <a class="category" href="https://scottyhq.github.io/blog/tag/roi_pac.html">ROI_PAC</a>
     <a class="category" href="https://scottyhq.github.io/blog/tag/insar.html">InSAR</a>
-    <a class="category" href="https://scottyhq.github.io/blog/tag/homebrew.html">Homebrew</a>
+    <a class="category" href="https://scottyhq.github.io/blog/tag/mdx.html">MDX</a>
+    <a class="category" href="https://scottyhq.github.io/blog/tag/roiview.html">Roiview</a>
   </span>
 </p>    </footer>
   </article>
@@ -1808,16 +1831,19 @@ init_mathjax();
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="https://scottyhq.github.io/blog/2014/02/06/install-roipac-onmac/">ROI_PAC ON_MAC</a>
+          <a href="https://scottyhq.github.io/blog/2014/02/06/install-roiview-mac/">Roiview on Mac</a>
+      </li>
+      <li class="post">
+          <a href="https://scottyhq.github.io/blog/2014/02/03/install-mdx-mac/">Install MDX on Mac</a>
+      </li>
+      <li class="post">
+          <a href="https://scottyhq.github.io/blog/2014/02/01/install-roipac-mac/">ROI_PAC ON_MAC</a>
       </li>
       <li class="post">
           <a href="https://scottyhq.github.io/blog/2013/11/12/roi_browser/">ROI_PAC Interferogram Browser</a>
       </li>
       <li class="post">
           <a href="https://scottyhq.github.io/blog/2013/11/10/setup-python-mac/">Setting up Python for Scientific Computing on a Mac</a>
-      </li>
-      <li class="post">
-          <a href="https://scottyhq.github.io/blog/2013/11/04/mapping-volcanic-eruptions/">Mapping the largest Holocene Volcanic Eruptions</a>
       </li>
     </ul>
   </section>
@@ -1832,7 +1858,7 @@ init_mathjax();
 
   <section>
   <h1>Tags</h1>
-    <a href="https://scottyhq.github.io/blog/tag/osx.html">osx</a>,    <a href="https://scottyhq.github.io/blog/tag/python.html">python</a>,    <a href="https://scottyhq.github.io/blog/tag/science.html">science</a>,    <a href="https://scottyhq.github.io/blog/tag/eruption.html">eruption</a>,    <a href="https://scottyhq.github.io/blog/tag/matplotlib.html">matplotlib</a>,    <a href="https://scottyhq.github.io/blog/tag/mac.html">mac</a>,    <a href="https://scottyhq.github.io/blog/tag/roi_pac.html">ROI_PAC</a>,    <a href="https://scottyhq.github.io/blog/tag/volcano.html">volcano</a>,    <a href="https://scottyhq.github.io/blog/tag/insar.html">InSAR</a>,    <a href="https://scottyhq.github.io/blog/tag/homebrew.html">Homebrew</a>,    <a href="https://scottyhq.github.io/blog/tag/basemap.html">basemap</a>  </section>
+    <a href="https://scottyhq.github.io/blog/tag/osx.html">osx</a>,    <a href="https://scottyhq.github.io/blog/tag/python.html">python</a>,    <a href="https://scottyhq.github.io/blog/tag/science.html">science</a>,    <a href="https://scottyhq.github.io/blog/tag/eruption.html">eruption</a>,    <a href="https://scottyhq.github.io/blog/tag/mac.html">mac</a>,    <a href="https://scottyhq.github.io/blog/tag/matplotlib.html">matplotlib</a>,    <a href="https://scottyhq.github.io/blog/tag/mdx.html">MDX</a>,    <a href="https://scottyhq.github.io/blog/tag/roi_pac.html">ROI_PAC</a>,    <a href="https://scottyhq.github.io/blog/tag/volcano.html">volcano</a>,    <a href="https://scottyhq.github.io/blog/tag/insar.html">InSAR</a>,    <a href="https://scottyhq.github.io/blog/tag/homebrew.html">Homebrew</a>,    <a href="https://scottyhq.github.io/blog/tag/roiview.html">Roiview</a>,    <a href="https://scottyhq.github.io/blog/tag/basemap.html">basemap</a>  </section>
 
 
 
@@ -1918,9 +1944,9 @@ init_mathjax();
 </script>
 	<script type="text/javascript">
 	  var disqus_shortname = 'geophysicsnotes';
-          var disqus_identifier = '/2014/02/06/install-roipac-onmac/';
-          var disqus_url = 'https://scottyhq.github.io/blog/2014/02/06/install-roipac-onmac/';
-          var disqus_title = 'ROI_PAC ON_MAC';
+          var disqus_identifier = '/2014/02/06/install-roiview-mac/';
+          var disqus_url = 'https://scottyhq.github.io/blog/2014/02/06/install-roiview-mac/';
+          var disqus_title = 'Roiview on Mac';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 	    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
