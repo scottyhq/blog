@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Geophysics Deskwork - ROI_PAC</title>
+  <title>Obtaining DEMS for ROI_PAC</title>
   <meta name="author" content="Scott Henderson">
 
 
@@ -1725,93 +1725,106 @@ init_mathjax();
 </ul></nav>
   <div id="main">
     <div id="content">
-<div class="blog-index">
-  		<article>
+<div>
+  <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">
-        <a href="https://scottyhq.github.io/blog/2014/04/29/get-roipac-dem/">Obtaining DEMS for ROI_PAC</a>
-      </h1>
+      <h1 class="entry-title">Obtaining DEMS for ROI_PAC</h1>
       <p class="meta"><time datetime="2014-04-29T05:00:00" pubdate>Apr 29, 2014</time></p>
 </header>
 
   <div class="entry-content"><p><img src="/blog/images/anatahan_v2_30m.jpg"></p>
 <h1>Obtaining Digital Elevation Data for ROI_PAC</h1>
-<p>This post and compares variou DEM sources and provides from useful scripts for ROI_PAC. ROI_PAC processing is typically done with an SRTM digital elevation model (DEM). The <a href="http://en.wikipedia.org/wiki/Shuttle_Radar_Topography_Mission">SRTM mission</a> was flown on the space shuttle Endeavor 02/2000 and in a mere 11 days ...</p></div>
-  <footer>
-    <a rel="full-article" href="https://scottyhq.github.io/blog/2014/04/29/get-roipac-dem/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://scottyhq.github.io/blog/2014/02/06/install-roiview-mac/">Roiview on Mac</a>
-      </h1>
-      <p class="meta"><time datetime="2014-02-06T04:00:00" pubdate>Feb 06, 2014</time></p>
-</header>
+<p>This post and compares variou DEM sources and provides from useful scripts for ROI_PAC. ROI_PAC processing is typically done with an SRTM digital elevation model (DEM). The <a href="http://en.wikipedia.org/wiki/Shuttle_Radar_Topography_Mission">SRTM mission</a> was flown on the space shuttle Endeavor 02/2000 and in a mere 11 days acquired data to map elevations between 56S to 60N. </p>
+<p>The data is freely available at 30m resolution for US territory and 90m for the rest of the world. It can be obtained from a variety of sources (e.g. <a href="https://lpdaac.usgs.gov">NASA/USGS LPDAAC</a>,<a href="http://www.cgiar-csi.org/data/srtm-90m-digital-elevation-database-v4-1">CGIAR</a> at various levels of processing and quality control. The <a href="http://roipac.org/cgi-bin/moin.cgi/ContribSoftware">get_SRTM.pl</a> fetches SRTM with voids from <a href="http://dds.cr.usgs.gov/">USGS server</a>. For example, to obtain a DEM for <a href="http://www.volcano.si.edu/volcano.cfm?vn=284200">Anatahan Volcano</a> in the South Pacific (16.35N, 145.67E) is easy:</p>
+<div class="highlight"><pre><span class="n">get_SRTM</span><span class="p">.</span><span class="n">pl</span> <span class="n">anatahan</span><span class="p">.</span><span class="n">dem</span> <span class="mi">16</span> <span class="mi">17</span> <span class="mi">145</span> <span class="mi">146</span> <span class="mi">1</span> <span class="mi">3</span>
+</pre></div>
 
-  <div class="entry-content"><p><img src="/blog/images/roiview_mac.png"></p>
-<h2>Visualizing ROI_PAC Output</h2>
-<p>ROI_PAC outputs many images files in a few different binary formats (<a href="https://scottyhq.github.io/blog/2014/02/01/install-roipac-mac/">install ROI_PAC post</a>]). You can view these files <a href="http://www.roipac.org/Viewing_results">many ways</a>, but there are two programs designed specifically with ROI_PAC in mind: <a href="http://winsar.unavco.org/isce.html">MDX</a> and <a href="http://roiview.sourceforge.net">Roiview</a>. Since MDX is standard, I've described installing it on Mac in ...</p></div>
-  <footer>
-    <a rel="full-article" href="https://scottyhq.github.io/blog/2014/02/06/install-roiview-mac/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://scottyhq.github.io/blog/2014/02/03/install-mdx-mac/">Install MDX on Mac</a>
-      </h1>
-      <p class="meta"><time datetime="2014-02-03T05:00:00" pubdate>Feb 03, 2014</time></p>
-</header>
 
-  <div class="entry-content"><p><img src="/blog/images/mdx_mac.png"></p>
-<p><a href="http://roipac.org/Viewing_results#head-5b86fe6df122f36c359afab0b01792d812664bfa">MDX</a> is the go-to visualization software for ROI_PAC files, and this post explains how to get it working on a Mac. You can see about installing alternative software on <a href="https://scottyhq.github.io/blog/2014/02/06/install-roiview-mac/">this post</a></p>
-<p>MDX is tricky to obtain,,, <a href="http://winsar.unavco.org/isce.html">here is one place</a>. </p>
-<p>You'll need some dated open motif libraries to run ...</p></div>
-  <footer>
-    <a rel="full-article" href="https://scottyhq.github.io/blog/2014/02/03/install-mdx-mac/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://scottyhq.github.io/blog/2014/02/01/install-roipac-mac/">ROI_PAC ON_MAC</a>
-      </h1>
-      <p class="meta"><time datetime="2014-02-01T02:00:00" pubdate>Feb 01, 2014</time></p>
-</header>
+<p>The 1 indicates to swap-bytes since SRTM data is processed as 'big-endian' and most machines are 'little-endian' and the 3 indicates 90m SRTM data (use 1 if fetching higher resolution data over the US).</p>
+<p>I've updated the script to obtain void-filled SRTM data from LPDAAC available [here}(link to github). The usage is identical:</p>
+<div class="highlight"><pre><span class="n">get_SRTM3</span><span class="p">.</span><span class="n">pl</span> <span class="n">anatahan</span><span class="p">.</span><span class="n">dem</span> <span class="mi">16</span> <span class="mi">17</span> <span class="mi">145</span> <span class="mi">146</span> <span class="mi">1</span> <span class="mi">3</span>
+</pre></div>
 
-  <div class="entry-content"><p><img src="/blog/images/hector_mine_roi_pac.jpg"></p>
-<h2>What is it?</h2>
-<p><a href="http://www.openchannelfoundation.org/projects/ROI_PAC">ROI_PAC</a> is software for processing Interferometeric Synthetic Aperture Radar (InSAR) data. For general info about InSAR see this. The last major ROI_PAC update was in August 2009, since development focus seems to have moved to <a href="http://esto.nasa.gov/news/news_ISCE_3_2013.html">ISCE software</a>. Nevertheless, it is still widely used and will likely continue ...</p></div>
-  <footer>
-    <a rel="full-article" href="https://scottyhq.github.io/blog/2014/02/01/install-roipac-mac/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://scottyhq.github.io/blog/2013/11/12/roi_browser/">ROI_PAC Interferogram Browser</a>
-      </h1>
-      <p class="meta"><time datetime="2013-11-12T12:00:00" pubdate>Nov 12, 2013</time></p>
-</header>
 
-  <div class="entry-content"><p><img src="/blog/images/screen_shot.png"></p>
-<p>I've posted a simple code that I wrote to browse through a set of interferograms. Single interferograms are easy to view with a <a href="http://roipac.org/Viewing_results">variety of software</a>. <a href="http://roipac.org/InstallingMdx">MDX.pl</a> and <a href="http://rnovitsky.blogspot.com/2010/10/roiview-explore-insar-data-and-more.html">RoiView</a> are what I commonly use. </p>
-<p>However, it is common to have a directory with 10's or even 100 ...</p></div>
-  <footer>
-    <a rel="full-article" href="https://scottyhq.github.io/blog/2013/11/12/roi_browser/">Read On &crarr;</a>
-  </footer>
-  		</article>
-<div class="pagination">
+<h2>Visualizing the DEM</h2>
+<p>You should now have the files  <code>anatahan.dem</code> and <code>anatahan.dem.rsc</code>. The rsc file contains georeferencing information, but the uncommon format isn't recognized by GIS software (e.g. <a href="http://www.qgis.org/en/site/">QGIS</a>. Here is a <a href="github/dem2envi.py">simple script</a> to take the georeferencing information from the rsc file and create a standard <a href="http://www.exelisvis.com/docs/ENVIHeaderFiles.html">ENVI header</a>.</p>
+<div class="highlight"><pre><span class="n">dem2envi</span><span class="p">.</span><span class="n">py</span> <span class="n">anatahan</span><span class="p">.</span><span class="n">dem</span>
+</pre></div>
 
-  <br />
-</div></div>
+
+<p>Which outputs the header file <code>anatahan.dem.hdr</code>. Now it's eay to take advatange of <a href="http://www.gdal.org">GDAL</a> or <a href="http://gmt.soest.hawaii.edu">GMT</a> command line utilities. For example, you can easily upsample the SRTM data to 30m resolution</p>
+<div class="highlight"><pre><span class="n">gdalwarp</span> <span class="o">-</span><span class="n">tr</span> <span class="mf">0.000277777</span> <span class="mf">0.000277777</span> <span class="o">-</span><span class="n">r</span> <span class="n">bilinear</span> <span class="n">anatahan</span><span class="p">.</span><span class="n">dem</span> <span class="n">anatahan_30m</span><span class="p">.</span><span class="n">tif</span>
+</pre></div>
+
+
+<p>And quickly make a shaded relief image</p>
+<div class="highlight"><pre><span class="n">gdaldem</span> <span class="n">hillshade</span> <span class="n">anatahan_30m</span><span class="p">.</span><span class="n">tif</span> <span class="n">anatahan_30m_shade</span><span class="p">.</span><span class="n">tif</span>
+</pre></div>
+
+
+<p>And easily import the imagery into google earth</p>
+<div class="highlight"><pre><span class="n">gdal_translate</span> <span class="o">-</span><span class="n">of</span> <span class="n">KMLSUPEROVERLAY</span> <span class="n">anatahan_30m_shade</span><span class="p">.</span><span class="n">tif</span> <span class="n">anatahan_30m_shade</span><span class="p">.</span><span class="n">kmz</span>
+</pre></div>
+
+
+<h2>Comparison of SRTM v2, v3 and GDEM</h2>
+<p>The kmz files provide a convenient way to qualitatively compare the dems. Take a look at the following series of images for Anatahan:</p>
+<p><img src="/blog/images/anatahan_imagery.jpg"></p>
+<p>The google earth imagery shows the rugged relief at Anatahan.</p>
+<p><img src="/blog/images/anatahan_v2.jpg"></p>
+<p>The version 2 SRTM data has a native resolution of 90m, which claearly doesn't do the volcano justice. Also notice the presence of voids, common in areas of high relief. </p>
+<p><img src="/blog/images/anatahan_v2_30m.jpg"></p>
+<p>Version 2 after upsampling to 30m resolution. The terrain is clearer, so are the voids. When processing InSAR data over such a small area, it would be nice to get rid of those, which is where the void-filled SRTM comes in:</p>
+<p><img src="/blog/images/anatahan_v3.jpg"></p>
+<p>Notice the voids are gone, but we again have to upsample</p>
+<p><img src="/blog/images/anatahan_v3_90m.jpg"></p>
+<p>Much better. Voids are gone, and relief matches up with google earth imagery quite well. Time to use with ROI_PAC! There is just one last step, you have to create a new rsc file that matches the georeferencing information in the upsampled data.</p>
+<p>In reality any DEM can be used in processing as long as it's in the correct format and has an .rsc file to go with it. For example, the <a href="https://lpdaac.usgs.gov/products/aster_products_table/astgtm">ASTER GDEM version 2</a> was released 10/2011 and promises native 30m resolution. It is freely available from <a href="http://reverb.echo.nasa.gov/reverb/">NASA REVEB</a>. Unfortunately, data accuracy is <a href="http://www.viewfinderpanoramas.org/reviews.html#aster">still suspect</a> since inaccuracies due to clouds and other issues exist. Let's see how the GDEM2 looks for Anatahan:</p>
+<p><img src="/blog/images/anatahan_gdem.jpg"></p>
+<p>As you can see, the data has an artifical 'bumpiness' to it, and some other spurious features (e.g. a large bump in the north of the island presumably due to a cloud artifact.</p>
+<h2>Other Data Sources</h2>
+<p>Here are a few other interesting sources for elevation data:</p>
+<ul>
+<li>
+<p><a href="http://www.opentopography.org">Open Topography</a> You can get extremely high resolution <a href="http://en.wikipedia.org/wiki/Lidar">LiDAR</a> here!</p>
+</li>
+<li>
+<p><a href="http://www.viewfinderpanoramas.org">Viewfinder Panoramas</a> An excellent resource for assessing freely available digital elevation models in detail, and also obtaining 90m elevation data outside of the SRTM vcoverage zone</p>
+</li>
+<li>
+<p><a href="http://www.astrium-geo.com/worlddem/">WorldDEM</a> The TanDEM-X mission is currently compiling an X-band DEM, which promises 12mx12m horizontal resolution and 4m absolute vertical accuracy with pole-to-pole coverage. This is exciting! But unfortunately, you'll have to pay, and most areas won't be available for years to come.</p>
+</li>
+</ul>
+<h2>Conclusion</h2>
+<p>For the time being, SRTM Plus (version 3) is the go-to, freely available digital elevation model for ROI_PAC processing.</p></div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">Scott Henderson</span>
+  </span>
+<time datetime="2014-04-29T05:00:00" pubdate>Apr 29, 2014</time>  <span class="categories">
+    <a class="category" href="https://scottyhq.github.io/blog/tag/roi_pac.html">ROI_PAC</a>
+    <a class="category" href="https://scottyhq.github.io/blog/tag/insar.html">InSAR</a>
+    <a class="category" href="https://scottyhq.github.io/blog/tag/dem.html">DEM</a>
+    <a class="category" href="https://scottyhq.github.io/blog/tag/gdal.html">GDAL</a>
+  </span>
+</p>    </footer>
+  </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+  </section>
+</div>
 <aside class="sidebar">
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
           <a href="https://scottyhq.github.io/blog/2014/04/29/get-roipac-dem/">Obtaining DEMS for ROI_PAC</a>
+      </li>
+      <li class="post">
+          <a href="https://scottyhq.github.io/blog/2014/02/08/mapping-volcanic-eruptions/">Mapping the largest Holocene Volcanic Eruptions</a>
       </li>
       <li class="post">
           <a href="https://scottyhq.github.io/blog/2014/02/06/install-roiview-mac/">Roiview on Mac</a>
@@ -1821,9 +1834,6 @@ init_mathjax();
       </li>
       <li class="post">
           <a href="https://scottyhq.github.io/blog/2014/02/01/install-roipac-mac/">ROI_PAC ON_MAC</a>
-      </li>
-      <li class="post">
-          <a href="https://scottyhq.github.io/blog/2013/11/12/roi_browser/">ROI_PAC Interferogram Browser</a>
       </li>
     </ul>
   </section>
@@ -1924,6 +1934,9 @@ init_mathjax();
 </script>
 	<script type="text/javascript">
 	  var disqus_shortname = 'geophysicsnotes';
+          var disqus_identifier = '/2014/04/29/get-roipac-dem/';
+          var disqus_url = 'https://scottyhq.github.io/blog/2014/04/29/get-roipac-dem/';
+          var disqus_title = 'Obtaining DEMS for ROI_PAC';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 	    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
