@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Obtaining DEMS for ROI_PAC</title>
+  <title>Obtaining DEMs for ROI_PAC</title>
   <meta name="author" content="Scott Henderson">
 
 
@@ -1728,41 +1728,46 @@ init_mathjax();
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">Obtaining DEMS for ROI_PAC</h1>
+      <h1 class="entry-title">Obtaining DEMs for ROI_PAC</h1>
       <p class="meta"><time datetime="2014-04-29T05:00:00" pubdate>Apr 29, 2014</time></p>
 </header>
 
-  <div class="entry-content"><p><img src="/blog/images/anatahan_v2_30m.jpg"></p>
-<h1>Obtaining Digital Elevation Data for ROI_PAC</h1>
-<p>This post and compares variou DEM sources and provides from useful scripts for ROI_PAC. ROI_PAC processing is typically done with an SRTM digital elevation model (DEM). The <a href="http://en.wikipedia.org/wiki/Shuttle_Radar_Topography_Mission">SRTM mission</a> was flown on the space shuttle Endeavor 02/2000 and in a mere 11 days acquired data to map elevations between 56S to 60N. </p>
-<p>The data is freely available at 30m resolution for US territory and 90m for the rest of the world. It can be obtained from a variety of sources (e.g. <a href="https://lpdaac.usgs.gov">NASA/USGS LPDAAC</a>,<a href="http://www.cgiar-csi.org/data/srtm-90m-digital-elevation-database-v4-1">CGIAR</a> at various levels of processing and quality control. The <a href="http://roipac.org/cgi-bin/moin.cgi/ContribSoftware">get_SRTM.pl</a> fetches SRTM with voids from <a href="http://dds.cr.usgs.gov/">USGS server</a>. For example, to obtain a DEM for <a href="http://www.volcano.si.edu/volcano.cfm?vn=284200">Anatahan Volcano</a> in the South Pacific (16.35N, 145.67E) is easy:</p>
+  <div class="entry-content"><p>{i img /blog/images/anatahan_v2_30m.jpg %}</p>
+<!-- # Obtaining Digital Elevation Data for ROI_PAC -->
+
+<p>This post and compares various Digital Elevation Model (DEM) sources and provides from useful scripts for working with ROI_PAC. ROI_PAC processing is typically done with SRTM DEM. The <a href="http://en.wikipedia.org/wiki/Shuttle_Radar_Topography_Mission">SRTM mission</a> was flown on the space shuttle Endeavor 02/2000 and in a mere 11 days acquired data to map elevations between 56S to 60N! </p>
+<p>The data is freely available at 30m resolution for US territory and 90m for the rest of the world. It can be obtained from a variety of sources (e.g. <a href="https://lpdaac.usgs.gov">NASA/USGS LPDAAC</a>, <a href="http://www.cgiar-csi.org/data/srtm-90m-digital-elevation-database-v4-1">CGIAR</a> at various levels of processing and quality control. The <a href="http://roipac.org/cgi-bin/moin.cgi/ContribSoftware">get_SRTM.pl</a> script with ROI_PAC fetches SRTM data with voids from this <a href="http://dds.cr.usgs.gov/">USGS server</a>. For example, it's easy to obtain a DEM for <a href="http://www.volcano.si.edu/volcano.cfm?vn=284200">Anatahan Volcano</a> in the South Pacific (16.35N, 145.67E):</p>
 <div class="highlight"><pre><span class="n">get_SRTM</span><span class="p">.</span><span class="n">pl</span> <span class="n">anatahan</span><span class="p">.</span><span class="n">dem</span> <span class="mi">16</span> <span class="mi">17</span> <span class="mi">145</span> <span class="mi">146</span> <span class="mi">1</span> <span class="mi">3</span>
 </pre></div>
 
 
-<p>The 1 indicates to swap-bytes since SRTM data is processed as 'big-endian' and most machines are 'little-endian' and the 3 indicates 90m SRTM data (use 1 if fetching higher resolution data over the US).</p>
-<p>I've updated the script to obtain void-filled SRTM data from LPDAAC available [here}(link to github). The usage is identical:</p>
+<p>The 1 indicates to swap byte order since SRTM data is processed as 'big-endian' and most machines are 'little-endian' and the 3 indicates 90m SRTM data (use 1 if fetching higher resolution data over the US). You'll have to compile the <a href="https://github.com/scottyhq/insar_scripts/DEM/byte-swap.c">byte-swap</a> C program and put it in the ROI_PAC path:</p>
+<div class="highlight"><pre><span class="n">gcc</span> <span class="o">-</span><span class="n">o</span> <span class="n">byte</span><span class="o">-</span><span class="n">swap</span> <span class="n">byte</span><span class="o">-</span><span class="n">swap</span><span class="p">.</span><span class="n">c</span>
+</pre></div>
+
+
+<p>I've modified the get_SRTM.pl script to obtain void-filled SRTM data (version 3, or "SRTM PLUS") from LPDAAC available since 11/2013. Download it <a href="https://github.com/scottyhq/insar_scripts/DEM/get_SRTM3.pl">here</a> The usage is identical:</p>
 <div class="highlight"><pre><span class="n">get_SRTM3</span><span class="p">.</span><span class="n">pl</span> <span class="n">anatahan</span><span class="p">.</span><span class="n">dem</span> <span class="mi">16</span> <span class="mi">17</span> <span class="mi">145</span> <span class="mi">146</span> <span class="mi">1</span> <span class="mi">3</span>
 </pre></div>
 
 
 <h2>Visualizing the DEM</h2>
-<p>You should now have the files  <code>anatahan.dem</code> and <code>anatahan.dem.rsc</code>. The rsc file contains georeferencing information, but the uncommon format isn't recognized by GIS software (e.g. <a href="http://www.qgis.org/en/site/">QGIS</a>. Here is a <a href="github/dem2envi.py">simple script</a> to take the georeferencing information from the rsc file and create a standard <a href="http://www.exelisvis.com/docs/ENVIHeaderFiles.html">ENVI header</a>.</p>
+<p>You should now have the files  <code>anatahan.dem</code> and <code>anatahan.dem.rsc</code>. The rsc file contains georeferencing information, but the uncommon format isn't recognized by GIS software (e.g. <a href="http://www.qgis.org/en/site/">QGIS</a>. Here is a <a href="github/dem2envi.py">simple script</a> to take the georeferencing information from the rsc file and create a standard <a href="http://www.exelisvis.com/docs/ENVIHeaderFiles.html">ENVI header</a>:</p>
 <div class="highlight"><pre><span class="n">dem2envi</span><span class="p">.</span><span class="n">py</span> <span class="n">anatahan</span><span class="p">.</span><span class="n">dem</span>
 </pre></div>
 
 
-<p>Which outputs the header file <code>anatahan.dem.hdr</code>. Now it's eay to take advatange of <a href="http://www.gdal.org">GDAL</a> or <a href="http://gmt.soest.hawaii.edu">GMT</a> command line utilities. For example, you can easily upsample the SRTM data to 30m resolution</p>
+<p>Which outputs the header file <code>anatahan.dem.hdr</code>. Now it's eay to take advatange of <a href="http://www.gdal.org">GDAL</a> or <a href="http://gmt.soest.hawaii.edu">GMT</a> command line utilities. For example, you can easily upsample the SRTM data to 30m resolution:</p>
 <div class="highlight"><pre><span class="n">gdalwarp</span> <span class="o">-</span><span class="n">tr</span> <span class="mf">0.000277777</span> <span class="mf">0.000277777</span> <span class="o">-</span><span class="n">r</span> <span class="n">bilinear</span> <span class="n">anatahan</span><span class="p">.</span><span class="n">dem</span> <span class="n">anatahan_30m</span><span class="p">.</span><span class="n">tif</span>
 </pre></div>
 
 
-<p>And quickly make a shaded relief image</p>
-<div class="highlight"><pre><span class="n">gdaldem</span> <span class="n">hillshade</span> <span class="n">anatahan_30m</span><span class="p">.</span><span class="n">tif</span> <span class="n">anatahan_30m_shade</span><span class="p">.</span><span class="n">tif</span>
+<p>And quickly make a shaded relief image:</p>
+<div class="highlight"><pre><span class="n">gdaldem</span> <span class="n">hillshade</span> <span class="o">-</span><span class="n">s</span> <span class="mi">111120</span> <span class="o">-</span><span class="n">compute_edges</span> <span class="n">anatahan_30m</span><span class="p">.</span><span class="n">tif</span> <span class="n">anatahan_30m_shade</span><span class="p">.</span><span class="n">tif</span>
 </pre></div>
 
 
-<p>And easily import the imagery into google earth</p>
+<p>And easily import the imagery into google earth:</p>
 <div class="highlight"><pre><span class="n">gdal_translate</span> <span class="o">-</span><span class="n">of</span> <span class="n">KMLSUPEROVERLAY</span> <span class="n">anatahan_30m_shade</span><span class="p">.</span><span class="n">tif</span> <span class="n">anatahan_30m_shade</span><span class="p">.</span><span class="n">kmz</span>
 </pre></div>
 
@@ -1770,26 +1775,76 @@ init_mathjax();
 <h2>Comparison of SRTM v2, v3 and GDEM</h2>
 <p>The kmz files provide a convenient way to qualitatively compare the dems. Take a look at the following series of images for Anatahan:</p>
 <p><img src="/blog/images/anatahan_imagery.jpg"></p>
-<p>The google earth imagery shows the rugged relief at Anatahan.</p>
+<p>The google earth imagery above shows the rugged relief at Anatahan.</p>
 <p><img src="/blog/images/anatahan_v2.jpg"></p>
-<p>The version 2 SRTM data has a native resolution of 90m, which claearly doesn't do the volcano justice. Also notice the presence of voids, common in areas of high relief. </p>
+<p>SRTM version 2 data has a native resolution of 90m, which clearly doesn't do the volcano justice. Also notice the presence of voids, common in areas of high relief. </p>
 <p><img src="/blog/images/anatahan_v2_30m.jpg"></p>
-<p>Version 2 after upsampling to 30m resolution. The terrain is clearer, so are the voids. When processing InSAR data over such a small area, it would be nice to get rid of those, which is where the void-filled SRTM comes in:</p>
+<p>SRTM version 2 after upsampling to 30m resolution. The terrain is clearer, so are the voids. When processing InSAR data over such a small area, it would be nice to get rid of those! </p>
 <p><img src="/blog/images/anatahan_v3.jpg"></p>
-<p>Notice the voids are gone, but we again have to upsample</p>
-<p><img src="/blog/images/anatahan_v3_90m.jpg"></p>
-<p>Much better. Voids are gone, and relief matches up with google earth imagery quite well. Time to use with ROI_PAC! There is just one last step, you have to create a new rsc file that matches the georeferencing information in the upsampled data.</p>
+<p>SRTM Plus (version 3). Notice the voids are gone, but we again should upsample the data for higher resolution InSAR processing.</p>
+<p><img src="/blog/images/anatahan_v3_30m.jpg"></p>
+<p>Much better! SRTM Plus upsampled to 30m resolution.  Voids are gone, and relief matches up with Google Earth imagery quite well. To use this upsampled data with ROI_PAC you have to ensure it's in the correct binary format and create a new rsc file that matches the georeferencing information in the upsampled data. The following GDAL commands will do:</p>
+<div class="highlight"><pre><span class="n">gdal_translate</span> <span class="o">-</span><span class="n">of</span> <span class="n">ENVI</span> <span class="o">-</span><span class="n">ot</span> <span class="n">Int16</span> <span class="n">anatahan_30m</span><span class="p">.</span><span class="n">tif</span> <span class="n">anatahan_30m</span><span class="p">.</span><span class="n">dem</span>
+<span class="n">gdalinfo</span> <span class="n">anatahan_30m</span><span class="p">.</span><span class="n">dem</span>
+</pre></div>
+
+
+<p><code>gdalinfo</code> produces the following output:</p>
+<div class="highlight"><pre><span class="n">Driver</span><span class="o">:</span> <span class="n">ENVI</span><span class="o">/</span><span class="n">ENVI</span> <span class="o">.</span><span class="na">hdr</span> <span class="n">Labelled</span>
+<span class="n">Files</span><span class="o">:</span> <span class="n">anatahan_30m</span><span class="o">.</span><span class="na">dem</span>
+       <span class="n">anatahan_30m</span><span class="o">.</span><span class="na">dem</span><span class="o">.</span><span class="na">aux</span><span class="o">.</span><span class="na">xml</span>
+       <span class="n">anatahan_30m</span><span class="o">.</span><span class="na">hdr</span>
+<span class="n">Size</span> <span class="k">is</span> <span class="mi">3600</span><span class="o">,</span> <span class="mi">3600</span>
+<span class="n">Coordinate</span> <span class="n">System</span> <span class="k">is</span><span class="o">:</span>
+<span class="n">GEOGCS</span><span class="o">[</span><span class="s2">&quot;GCS_WGS_1984&quot;</span><span class="o">,</span>
+    <span class="n">DATUM</span><span class="o">[</span><span class="s2">&quot;WGS_1984&quot;</span><span class="o">,</span>
+        <span class="n">SPHEROID</span><span class="o">[</span><span class="s2">&quot;WGS_84&quot;</span><span class="o">,</span><span class="mi">6378137</span><span class="o">,</span><span class="mf">298.257223563</span><span class="o">]],</span>
+    <span class="n">PRIMEM</span><span class="o">[</span><span class="s2">&quot;Greenwich&quot;</span><span class="o">,</span><span class="mi">0</span><span class="o">],</span>
+    <span class="n">UNIT</span><span class="o">[</span><span class="s2">&quot;Degree&quot;</span><span class="o">,</span><span class="mf">0.017453292519943295</span><span class="o">]]</span>
+<span class="n">Origin</span> <span class="o">=</span> <span class="o">(</span><span class="mf">145.000000000000000</span><span class="o">,</span><span class="mf">17.000000000000000</span><span class="o">)</span>
+<span class="n">Pixel</span> <span class="n">Size</span> <span class="o">=</span> <span class="o">(</span><span class="mf">0.000277777000000</span><span class="o">,-</span><span class="mf">0.000277777000000</span><span class="o">)</span>
+<span class="n">Metadata</span><span class="o">:</span>
+  <span class="n">AREA_OR_POINT</span><span class="o">=</span><span class="n">Area</span>
+  <span class="n">Band_1</span><span class="o">=</span><span class="n">Band</span> <span class="mi">1</span>
+<span class="n">Image</span> <span class="n">Structure</span> <span class="n">Metadata</span><span class="o">:</span>
+  <span class="n">INTERLEAVE</span><span class="o">=</span><span class="n">BAND</span>
+<span class="n">Corner</span> <span class="n">Coordinates</span><span class="o">:</span>
+<span class="n">Upper</span> <span class="n">Left</span>  <span class="o">(</span> <span class="mf">145.0000000</span><span class="o">,</span>  <span class="mf">17.0000000</span><span class="o">)</span> <span class="o">(</span><span class="mi">145</span><span class="n">d</span> <span class="mi">0</span><span class="s1">&#39; 0.00&quot;E, 17d 0&#39;</span> <span class="mf">0.00</span><span class="s2">&quot;N)</span>
+<span class="s2">Lower Left  ( 145.0000000,  16.0000028) (145d 0&#39; 0.00&quot;</span><span class="n">E</span><span class="o">,</span> <span class="mi">16</span><span class="n">d</span> <span class="mi">0</span><span class="s1">&#39; 0.01&quot;N)</span>
+<span class="s1">Upper Right ( 145.9999972,  17.0000000) (145d59&#39;</span><span class="mf">59.99</span><span class="s2">&quot;E, 17d 0&#39; 0.00&quot;</span><span class="n">N</span><span class="o">)</span>
+<span class="n">Lower</span> <span class="n">Right</span> <span class="o">(</span> <span class="mf">145.9999972</span><span class="o">,</span>  <span class="mf">16.0000028</span><span class="o">)</span> <span class="o">(</span><span class="mi">145</span><span class="n">d59</span><span class="s1">&#39;59.99&quot;E, 16d 0&#39;</span> <span class="mf">0.01</span><span class="s2">&quot;N)</span>
+<span class="s2">Center      ( 145.4999986,  16.5000014) (145d29&#39;59.99&quot;</span><span class="n">E</span><span class="o">,</span> <span class="mi">16</span><span class="n">d30</span><span class="err">&#39;</span> <span class="mf">0.01</span><span class="err">&quot;</span><span class="n">N</span><span class="o">)</span>
+<span class="n">Band</span> <span class="mi">1</span> <span class="n">Block</span><span class="o">=</span><span class="mi">3600</span><span class="n">x1</span> <span class="n">Type</span><span class="o">=</span><span class="n">Int16</span><span class="o">,</span> <span class="n">ColorInterp</span><span class="o">=</span><span class="n">Undefined</span>
+  <span class="n">Description</span> <span class="o">=</span> <span class="n">Band</span> <span class="mi">1</span>
+</pre></div>
+
+
+<p>From which you can create the necessary <code>anatahan_30m.dem.rsc</code> (or write a script to do this!):</p>
+<div class="highlight"><pre><span class="n">WIDTH</span>                                    <span class="mi">3600</span>                          
+<span class="n">FILE_LENGTH</span>                              <span class="mi">3600</span>                          
+<span class="n">X_STEP</span>                                   <span class="mf">0.000277777</span>              
+<span class="n">Y_STEP</span>                                   <span class="o">-</span><span class="mf">0.000277777</span>             
+<span class="n">X_FIRST</span>                                  <span class="mi">145</span>                           
+<span class="n">Y_FIRST</span>                                  <span class="mi">17</span>                            
+<span class="n">X_UNIT</span>                                   <span class="n">degres</span>                        
+<span class="n">Y_UNIT</span>                                   <span class="n">degres</span>                        
+<span class="n">Z_OFFSET</span>                                 <span class="mi">0</span>                             
+<span class="n">Z_SCALE</span>                                  <span class="mi">1</span>                             
+<span class="n">PROJECTION</span>                               <span class="n">LATLON</span> 
+</pre></div>
+
+
+<h2>Other DEM Sources</h2>
 <p>In reality any DEM can be used in processing as long as it's in the correct format and has an .rsc file to go with it. For example, the <a href="https://lpdaac.usgs.gov/products/aster_products_table/astgtm">ASTER GDEM version 2</a> was released 10/2011 and promises native 30m resolution. It is freely available from <a href="http://reverb.echo.nasa.gov/reverb/">NASA REVEB</a>. Unfortunately, data accuracy is <a href="http://www.viewfinderpanoramas.org/reviews.html#aster">still suspect</a> since inaccuracies due to clouds and other issues exist. Let's see how the GDEM2 looks for Anatahan:</p>
 <p><img src="/blog/images/anatahan_gdem.jpg"></p>
-<p>As you can see, the data has an artifical 'bumpiness' to it, and some other spurious features (e.g. a large bump in the north of the island presumably due to a cloud artifact.</p>
-<h2>Other Data Sources</h2>
+<p>As you can see, the data has an artifical 'bumpiness' to it, and some other spurious features (e.g. a large bump in the northwest is presumably due to a cloud artifact.</p>
 <p>Here are a few other interesting sources for elevation data:</p>
 <ul>
 <li>
 <p><a href="http://www.opentopography.org">Open Topography</a> You can get extremely high resolution <a href="http://en.wikipedia.org/wiki/Lidar">LiDAR</a> here!</p>
 </li>
 <li>
-<p><a href="http://www.viewfinderpanoramas.org">Viewfinder Panoramas</a> An excellent resource for assessing freely available digital elevation models in detail, and also obtaining 90m elevation data outside of the SRTM vcoverage zone</p>
+<p><a href="http://www.viewfinderpanoramas.org">Viewfinder Panoramas</a> An excellent resource for assessing freely available digital elevation models in detail, and also obtaining 90m elevation data outside of the SRTM coverage zone.</p>
 </li>
 <li>
 <p><a href="http://www.astrium-geo.com/worlddem/">WorldDEM</a> The TanDEM-X mission is currently compiling an X-band DEM, which promises 12mx12m horizontal resolution and 4m absolute vertical accuracy with pole-to-pole coverage. This is exciting! But unfortunately, you'll have to pay, and most areas won't be available for years to come.</p>
@@ -1821,7 +1876,7 @@ init_mathjax();
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="https://scottyhq.github.io/blog/2014/04/29/get-roipac-dem/">Obtaining DEMS for ROI_PAC</a>
+          <a href="https://scottyhq.github.io/blog/2014/04/29/get-roipac-dem/">Obtaining DEMs for ROI_PAC</a>
       </li>
       <li class="post">
           <a href="https://scottyhq.github.io/blog/2014/02/08/mapping-volcanic-eruptions/">Mapping the largest Holocene Volcanic Eruptions</a>
@@ -1936,7 +1991,7 @@ init_mathjax();
 	  var disqus_shortname = 'geophysicsnotes';
           var disqus_identifier = '/2014/04/29/get-roipac-dem/';
           var disqus_url = 'https://scottyhq.github.io/blog/2014/04/29/get-roipac-dem/';
-          var disqus_title = 'Obtaining DEMS for ROI_PAC';
+          var disqus_title = 'Obtaining DEMs for ROI_PAC';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 	    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
