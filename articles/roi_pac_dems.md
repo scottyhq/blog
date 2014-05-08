@@ -3,7 +3,7 @@ date: 2014-04-29 5:00
 tags: ROI_PAC, InSAR, DEM, GDAL
 slug: get-roipac-dem
 
-{i img /blog/images/anatahan_v2_30m.jpg %}
+{% img /blog/images/anatahan_v2_30m.jpg %}
 
 <!-- # Obtaining Digital Elevation Data for ROI_PAC -->
 
