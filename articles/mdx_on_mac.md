@@ -9,7 +9,7 @@ slug: install-mdx-mac
 
 MDX is tricky to obtain,,, [here is one place](http://winsar.unavco.org/isce.html). 
 
-You'll need some dated open motif libraries to run it. Fortunately, with Homebrew (see previous post), it's not hard to get it working on a Mac:
+You'll need some dated open motif libraries to run it. Fortunately, with Homebrew [see this post]({filename}ROI_PAC_ON_MAC.md), it's not hard to get it working on a Mac:
 
 ```
 brew install lesstif
@@ -34,4 +34,4 @@ And run:
 make -f Makemdx_gfortran
 ```
 
-Now just add the MDX environment variable to SAR_CONFIG and system PATH (e.g. `export PATH=/Users/scott/Software/mdx_190_79_03/mdx:$PATH`). Assuming you have the ROI_PAC test data, you can see an image with the following command. More details on using MDX are [here](http://roipac.org/Viewing_results#head-5b86fe6df122f36c359afab0b01792d812664bfa).
+Now just add the MDX environment variable to SAR_CONFIG and system PATH (e.g. `export PATH=/Users/scott/Software/mdx_190_79_03/mdx:$PATH`). Assuming you have the ROI_PAC test data, you can see an image with the following command. More details on using MDX are [here](http://roipac.org/cgi-bin/moin.cgi/Viewing_results#head-5b86fe6df122f36c359afab0b01792d812664bfa).

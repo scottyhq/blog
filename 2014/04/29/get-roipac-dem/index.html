@@ -1735,24 +1735,24 @@ init_mathjax();
   <div class="entry-content"><p><img src="/blog/images/anatahan_v2_30m.jpg"></p>
 <!-- # Obtaining Digital Elevation Data for ROI_PAC -->
 
-<p>This post and compares various Digital Elevation Model (DEM) sources and provides from useful scripts for working with ROI_PAC. ROI_PAC processing is typically done with SRTM DEM. The <a href="http://en.wikipedia.org/wiki/Shuttle_Radar_Topography_Mission">SRTM mission</a> was flown on the space shuttle Endeavor 02/2000 and in a mere 11 days acquired data to map elevations between 56S to 60N! </p>
-<p>The data is freely available at 30m resolution for US territory and 90m for the rest of the world. It can be obtained from a variety of sources (e.g. <a href="https://lpdaac.usgs.gov">NASA/USGS LPDAAC</a>, <a href="http://www.cgiar-csi.org/data/srtm-90m-digital-elevation-database-v4-1">CGIAR</a> at various levels of processing and quality control. The <a href="http://roipac.org/cgi-bin/moin.cgi/ContribSoftware">get_SRTM.pl</a> script with ROI_PAC fetches SRTM data with voids from this <a href="http://dds.cr.usgs.gov/">USGS server</a>. For example, it's easy to obtain a DEM for <a href="http://www.volcano.si.edu/volcano.cfm?vn=284200">Anatahan Volcano</a> in the South Pacific (16.35N, 145.67E):</p>
+<p>This post and compares various Digital Elevation Model (DEM) sources and provides from <a href="https://github.com/scottyhq/insar_scripts/tree/master/DEM">useful scripts</a> for working with ROI_PAC. ROI_PAC processing is commonly done with SRTM digital elevation data. The <a href="http://en.wikipedia.org/wiki/Shuttle_Radar_Topography_Mission">SRTM mission</a> was flown on the space shuttle Endeavor 02/2000 and in a mere 11 days acquired data to map elevations between 56S to 60N! </p>
+<p>The data is freely available at 30m resolution for US territory and 90m for the rest of the world. It can be obtained from a variety of sources (e.g. <a href="https://lpdaac.usgs.gov">NASA/USGS LPDAAC</a>, <a href="http://www.cgiar-csi.org/data/srtm-90m-digital-elevation-database-v4-1">CGIAR</a> at various levels of processing and quality control. The <a href="http://roipac.org/cgi-bin/moin.cgi/ContribSoftware">get_SRTM.pl</a> script for ROI_PAC fetches SRTM data with voids from this <a href="http://dds.cr.usgs.gov/">USGS server</a>. For example, it's easy to obtain a DEM for <a href="http://www.volcano.si.edu/volcano.cfm?vn=284200">Anatahan Volcano</a> in the South Pacific (16.35N, 145.67E):</p>
 <div class="highlight"><pre><span class="n">get_SRTM</span><span class="p">.</span><span class="n">pl</span> <span class="n">anatahan</span><span class="p">.</span><span class="n">dem</span> <span class="mi">16</span> <span class="mi">17</span> <span class="mi">145</span> <span class="mi">146</span> <span class="mi">1</span> <span class="mi">3</span>
 </pre></div>
 
 
-<p>The 1 indicates to swap byte order since SRTM data is processed as 'big-endian' and most machines are 'little-endian' and the 3 indicates 90m SRTM data (use 1 if fetching higher resolution data over the US). You'll have to compile the <a href="https://github.com/scottyhq/insar_scripts/DEM/byte-swap.c">byte-swap</a> C program and put it in the ROI_PAC path:</p>
+<p>The 1 indicates to swap byte order since SRTM data is processed as 'big-endian' and most machines are 'little-endian' and the 3 indicates 90m SRTM data (use 1 if fetching higher resolution data over the US). You'll have to compile the <a href="https://github.com/scottyhq/insar_scripts/blob/master/DEM/byte-swap.c">byte-swap.c</a> program and put it in the ROI_PAC path:</p>
 <div class="highlight"><pre><span class="n">gcc</span> <span class="o">-</span><span class="n">o</span> <span class="n">byte</span><span class="o">-</span><span class="n">swap</span> <span class="n">byte</span><span class="o">-</span><span class="n">swap</span><span class="p">.</span><span class="n">c</span>
 </pre></div>
 
 
-<p>I've modified the get_SRTM.pl script to obtain void-filled SRTM data (version 3, or "SRTM PLUS") from LPDAAC available since 11/2013. Download it <a href="https://github.com/scottyhq/insar_scripts/DEM/get_SRTM3.pl">here</a> The usage is identical:</p>
+<p>I've modified the get_SRTM.pl script to obtain void-filled SRTM data (version 3, or "SRTM PLUS") from LPDAAC available since 11/2013. Download it here: <a href="https://github.com/scottyhq/insar_scripts/blob/master/DEM/get_SRTM3.pl">get_SRTM3.pl</a> The usage is identical:</p>
 <div class="highlight"><pre><span class="n">get_SRTM3</span><span class="p">.</span><span class="n">pl</span> <span class="n">anatahan</span><span class="p">.</span><span class="n">dem</span> <span class="mi">16</span> <span class="mi">17</span> <span class="mi">145</span> <span class="mi">146</span> <span class="mi">1</span> <span class="mi">3</span>
 </pre></div>
 
 
 <h2>Visualizing the DEM</h2>
-<p>You should now have the files  <code>anatahan.dem</code> and <code>anatahan.dem.rsc</code>. The rsc file contains georeferencing information, but the uncommon format isn't recognized by GIS software (e.g. <a href="http://www.qgis.org/en/site/">QGIS</a>. Here is a <a href="github/dem2envi.py">simple script</a> to take the georeferencing information from the rsc file and create a standard <a href="http://www.exelisvis.com/docs/ENVIHeaderFiles.html">ENVI header</a>:</p>
+<p>You should now have the files  <code>anatahan.dem</code> and <code>anatahan.dem.rsc</code>. The rsc file contains georeferencing information, but the uncommon format isn't recognized by GIS software (e.g. <a href="http://www.qgis.org/en/site/">QGIS</a>. Here is a simple script, <a href="https://github.com/scottyhq/insar_scripts/blob/master/DEM/dem2envi.py">dem2envi.py</a>, to take the georeferencing information from the rsc file and create a standard <a href="http://www.exelisvis.com/docs/ENVIHeaderFiles.html">ENVI header</a>:</p>
 <div class="highlight"><pre><span class="n">dem2envi</span><span class="p">.</span><span class="n">py</span> <span class="n">anatahan</span><span class="p">.</span><span class="n">dem</span>
 </pre></div>
 
@@ -1938,15 +1938,15 @@ init_mathjax();
         <h1>Blogroll</h2>
         <ul>
             <li><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
-            <li><a href="http://python.org/" target="_blank">Python.org</a></li>
-            <li><a href="http://matplotlib.org/basemap" target="_blank">Basemap</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python</a></li>
+            <li><a href="http://matplotlib.org/basemap/" target="_blank">Basemap</a></li>
             <li><a href="http://blog.enthought.com" target="_blank">Enthought[s]</a></li>
             <li><a href="http://nbviewer.ipython.org" target="_blank">IPython Notebook Viewer</a></li>
             <li><a href="http://www.scipy.org" target="_blank">SciPy</a></li>
             <li><a href="http://jakevdp.github.io" target="_blank">Pythonic Perambulations</a></li>
             <li><a href="http://peak5390.wordpress.com" target="_blank">Peak 5390</a></li>
             <li><a href="http://www.volcano.si.edu" target="_blank">Smithosonian Global Volcanism Program</a></li>
-            <li><a href="http://www.globalvolcanomodel.org" target="_blank">Global Volcano Model</a></li>
+            <li><a href="http://www.globalvolcanomodel.org/" target="_blank">Global Volcano Model</a></li>
             <li><a href="https://vhub.org" target="_blank">VHUB</a></li>
             <li><a href="http://www.wovodat.org" target="_blank">WOVOdat</a></li>
             <li><a href="http://volcanoes.usgs.gov" target="_blank">USGS Volcano Hazards</a></li>

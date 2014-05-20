@@ -7,20 +7,20 @@ slug: get-roipac-dem
 
 <!-- # Obtaining Digital Elevation Data for ROI_PAC -->
 
-This post and compares various Digital Elevation Model (DEM) sources and provides from useful scripts for working with ROI_PAC. ROI_PAC processing is typically done with SRTM DEM. The [SRTM mission](http://en.wikipedia.org/wiki/Shuttle_Radar_Topography_Mission) was flown on the space shuttle Endeavor 02/2000 and in a mere 11 days acquired data to map elevations between 56S to 60N! 
+This post and compares various Digital Elevation Model (DEM) sources and provides from [useful scripts](https://github.com/scottyhq/insar_scripts/tree/master/DEM) for working with ROI_PAC. ROI_PAC processing is commonly done with SRTM digital elevation data. The [SRTM mission](http://en.wikipedia.org/wiki/Shuttle_Radar_Topography_Mission) was flown on the space shuttle Endeavor 02/2000 and in a mere 11 days acquired data to map elevations between 56S to 60N! 
 
-The data is freely available at 30m resolution for US territory and 90m for the rest of the world. It can be obtained from a variety of sources (e.g. [NASA/USGS LPDAAC](https://lpdaac.usgs.gov), [CGIAR](http://www.cgiar-csi.org/data/srtm-90m-digital-elevation-database-v4-1) at various levels of processing and quality control. The [get_SRTM.pl](http://roipac.org/cgi-bin/moin.cgi/ContribSoftware) script with ROI_PAC fetches SRTM data with voids from this [USGS server](http://dds.cr.usgs.gov/). For example, it's easy to obtain a DEM for [Anatahan Volcano](http://www.volcano.si.edu/volcano.cfm?vn=284200) in the South Pacific (16.35N, 145.67E):
+The data is freely available at 30m resolution for US territory and 90m for the rest of the world. It can be obtained from a variety of sources (e.g. [NASA/USGS LPDAAC](https://lpdaac.usgs.gov), [CGIAR](http://www.cgiar-csi.org/data/srtm-90m-digital-elevation-database-v4-1) at various levels of processing and quality control. The [get_SRTM.pl](http://roipac.org/cgi-bin/moin.cgi/ContribSoftware) script for ROI_PAC fetches SRTM data with voids from this [USGS server](http://dds.cr.usgs.gov/). For example, it's easy to obtain a DEM for [Anatahan Volcano](http://www.volcano.si.edu/volcano.cfm?vn=284200) in the South Pacific (16.35N, 145.67E):
 ```
 get_SRTM.pl anatahan.dem 16 17 145 146 1 3
 ```
 
-The 1 indicates to swap byte order since SRTM data is processed as 'big-endian' and most machines are 'little-endian' and the 3 indicates 90m SRTM data (use 1 if fetching higher resolution data over the US). You'll have to compile the [byte-swap](https://github.com/scottyhq/insar_scripts/DEM/byte-swap.c) C program and put it in the ROI_PAC path:
+The 1 indicates to swap byte order since SRTM data is processed as 'big-endian' and most machines are 'little-endian' and the 3 indicates 90m SRTM data (use 1 if fetching higher resolution data over the US). You'll have to compile the [byte-swap.c](https://github.com/scottyhq/insar_scripts/blob/master/DEM/byte-swap.c) program and put it in the ROI_PAC path:
 
 ```
 gcc -o byte-swap byte-swap.c
 ```
 
-I've modified the get_SRTM.pl script to obtain void-filled SRTM data (version 3, or "SRTM PLUS") from LPDAAC available since 11/2013. Download it [here](https://github.com/scottyhq/insar_scripts/DEM/get_SRTM3.pl) The usage is identical:
+I've modified the get_SRTM.pl script to obtain void-filled SRTM data (version 3, or "SRTM PLUS") from LPDAAC available since 11/2013. Download it here: [get_SRTM3.pl](https://github.com/scottyhq/insar_scripts/blob/master/DEM/get_SRTM3.pl) The usage is identical:
 
 ```
 get_SRTM3.pl anatahan.dem 16 17 145 146 1 3
@@ -28,7 +28,7 @@ get_SRTM3.pl anatahan.dem 16 17 145 146 1 3
 
 ## Visualizing the DEM
 
-You should now have the files  `anatahan.dem` and `anatahan.dem.rsc`. The rsc file contains georeferencing information, but the uncommon format isn't recognized by GIS software (e.g. [QGIS](http://www.qgis.org/en/site/). Here is a [simple script](github/dem2envi.py) to take the georeferencing information from the rsc file and create a standard [ENVI header](http://www.exelisvis.com/docs/ENVIHeaderFiles.html):
+You should now have the files  `anatahan.dem` and `anatahan.dem.rsc`. The rsc file contains georeferencing information, but the uncommon format isn't recognized by GIS software (e.g. [QGIS](http://www.qgis.org/en/site/). Here is a simple script, [dem2envi.py](https://github.com/scottyhq/insar_scripts/blob/master/DEM/dem2envi.py), to take the georeferencing information from the rsc file and create a standard [ENVI header](http://www.exelisvis.com/docs/ENVIHeaderFiles.html):
 
 ```
 dem2envi.py anatahan.dem

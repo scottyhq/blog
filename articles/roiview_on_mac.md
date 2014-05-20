@@ -7,7 +7,7 @@ slug: install-roiview-mac
 
 ## Visualizing ROI_PAC Output
 
-ROI_PAC outputs many images files in a few different binary formats ([install ROI_PAC post]({filename}ROI_PAC_ON_MAC.md)]). You can view these files [many ways](http://www.roipac.org/Viewing_results), but there are two programs designed specifically with ROI_PAC in mind: [MDX](http://winsar.unavco.org/isce.html) and [Roiview](http://roiview.sourceforge.net). Since MDX is standard, I've described installing it on Mac in [this post]({filename}mdx_on_mac.md). 
+ROI_PAC outputs many images files in a few different binary formats ([install ROI_PAC post]({filename}ROI_PAC_ON_MAC.md)]). You can view these files [many ways](http://aws.roipac.org/cgi-bin/moin.cgi/Viewing_results/), bust there are two programs designed specifically with ROI_PAC in mind: [MDX](http://winsar.unavco.org/isce.html) and [Roiview](http://roiview.sourceforge.net). Since MDX is standard, I've described installing it on Mac in [this post]({filename}mdx_on_mac.md). 
 
 Here I go over installing the alternative Roiview. I haven't used it much, but it seems like Roiview is an excellent free alternative to MDX. Getting it to run on a Mac takes a little fiddling. Fortunately it's not too hard!
 
